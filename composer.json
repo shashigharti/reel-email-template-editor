@@ -1,0 +1,12 @@
+{
+    "name": "reel/reel-email-template-editor",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "ReelEmailTemplateEditor\\Includes\\": "src/includes/",
+            "ReelEmailTemplateEditor\\Rest\\": "src/rest/",
+            "ReelEmailTemplateEditor\\": "src/"
+        }
+    },
+    "require": {}
+}
