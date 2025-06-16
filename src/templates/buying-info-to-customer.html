@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .email-body {
+      margin: 15px auto;
+      padding: 30px;
+    }
+
+    .email-body table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .email-body td,
+    .email-body th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    .email-body .header {
+      margin: 0 auto;
+      text-align: center;
+      display: block;
+      padding: 20px 0px;
+      background: #ececec;
+      height: 100px;
+    }
+
+    .email-body .header a {
+      padding: 20px 0px;
+    }
+
+    .email-body .img-center {
+      margin: 0 auto;
+    }
+
+    .email-body button {
+      background-color: #0073aa;
+      border: none;
+      padding: 10px 16px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .email-body button a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .email-body button a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{SITE_URL}}">
+        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      </a>
+    </div>
+
+    <p>Congratulations!<br />
+      You should be receiving communication from the seller <strong>{{SELLER_NAME}}</strong> who is located in 
+      <strong>{{CITY}}, {{COUNTRY}}</strong> shortly.
+      Alternately you can request an invoice.<br />
+      The <strong>{{PRODUCT_TITLE}} {{PRODUCT_TYPE}}</strong> is now listed as <em>Pending</em> on the website, so nobody else can buy it.
+      You have 72 hours to complete the transaction or it will be posted back for sale.
+    </p>
+
+    <table>
+      <thead style="border-bottom: 2px solid #dddddd;">
+        <tr>
+          <th>Summary</th>
+          <th>Price</th>
+          <th>Request An Invoice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{PRODUCT_TITLE}}</td>
+          <td>{{CURRENCY}} {{SELLING_PRICE}}</td>
+          <td>
+            <button>
+              <a href="{{SITE_URL}}/request-invoice?invoice={{UNIQUE_KEY}}" target="_blank">Request Invoice</a>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

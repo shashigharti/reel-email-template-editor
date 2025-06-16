@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .email-body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      color: #333;
+    }
+
+    .header {
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px 0;
+      background: #ececec;
+    }
+
+    .img-center {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .email-body p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .email-body hr {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px solid #ccc;
+    }
+
+    .email-body strong {
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{SITE_URL}}">
+        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      </a>
+    </div>
+
+    <strong>Hi {{TECHNICIAN_NAME}},</strong>
+    <br />
+
+    <p>
+      One of our members tells us that you are a good technician, so we would like to invite you to be featured on
+      <a href="{{SITE_URL}}">Reel to Reel</a>.
+    </p>
+
+    <hr />
+
+    <p>
+      This is a free posting that will be visible to over 5000 tape recorder enthusiasts.
+      Technicians featured here report many inquiries and new business.
+      <br />
+      Here's where you can submit your info:
+    </p>
+
+    <p><a href="{{SUBMIT_URL}}">{{SUBMIT_URL}}</a></p>
+  </div>
+</body>
+</html>

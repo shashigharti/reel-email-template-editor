@@ -2,34 +2,40 @@
 namespace ReelEmailTemplateEditor;
 
 use ReelEmailTemplateEditor\Rest\TemplateController;
+use ReelEmailTemplateEditor\Rest\HookController;
+use ReelEmailTemplateEditor\Includes\PlaceholderRegistry;
 
 class Plugin {
     private $page_hook;
 
     public function register() {
-        add_action('rest_api_init', [$this, 'registerRestRoutes']);
-        add_action('admin_menu', [$this, 'addAdminMenu']);
-        add_action('admin_enqueue_scripts', [$this, 'enqueueAdminScripts']);
+        add_action('rest_api_init', [$this, 'register_rest_routes']);
+        add_action('admin_menu', [$this, 'add_admin_menu']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
+        add_action('plugins_loaded', [$this, 'register_placeholders']);
     }
 
-    public function registerRestRoutes() {
-        $controller = new TemplateController();
-        $controller->register_routes();
+    public function register_rest_routes() {
+        $template_controller = new TemplateController();
+        $template_controller->register_routes();
+
+        $hook_controller = new HookController();
+        $hook_controller->register_routes();
     }
 
-    public function addAdminMenu() {
+    public function add_admin_menu() {
         $this->page_hook = add_menu_page(
             'Reel Email Editor',
             'Reel Email Editor',
             'manage_options',
             'reel-email-template-editor',
-            [$this, 'adminPageHtml'],
+            [$this, 'admin_page_html'],
             'dashicons-email-alt',
             20
         );
     }
 
-    public function enqueueAdminScripts($hook) {
+    public function enqueue_admin_scripts($hook) {
         if ($hook !== $this->page_hook) {
             return;
         }
@@ -49,7 +55,24 @@ class Plugin {
         wp_enqueue_style('wp-components');
     }
 
-    public function adminPageHtml() {
+    public function register_placeholders() {
+        do_action('reel_email_placeholders_register');
+
+        PlaceholderRegistry::register('firstname', function ($context) {
+            return $context['user']->first_name ?? '';
+        });
+
+        PlaceholderRegistry::register('username', function ($context) {
+            return $context['user']->username ?? '';
+        });
+
+        PlaceholderRegistry::register('admin', function ($context) {
+            return 'Reel-to-reel Admin';
+        });
+        
+    }
+
+    public function admin_page_html() {
         ?>
         <div class="wrap">
             <h1>Reel Email Template Editor</h1>

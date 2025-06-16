@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viewpoint Submission Notification</title>
+  <style>
+    .email-body {
+      margin: 5px 25px 10px 25px;
+      border: 2px solid #ad4700;
+      background-color: #ccc;
+      padding: 1% 5% 1% 15%;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+    .header {
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px 0px;
+      background: #ececec;
+    }
+    .img-center {
+      display: block;
+      margin: 0 auto;
+    }
+    a {
+      color: #ad4700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    p {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{ SITE_URL }}">
+        <img class="img-center" src="{{ LOGO_URL }}" width="125" height="60" alt="Reel Reel Logo" />
+      </a>
+    </div>
+
+    <p>{{ AUTHOR_NAME }} has submitted in the following category - {{ CATEGORY_LABEL }}</p>
+
+    {{#IF CONTRIBUTOR_EXISTS}}
+      <p>{{ AUTHOR_NAME }} would consider becoming a regular site contributor</p>
+    {{/IF}}
+
+    <a href="{{ ADMIN_VIEWPOINT_LINK }}">Read The Post</a>
+  </div>
+</body>
+</html>

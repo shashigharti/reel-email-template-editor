@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .email-body {
+      margin: 5px 25px 10px 25px;
+      padding: 1% 5% 1% 15%;
+      font-family: Arial, sans-serif;
+    }
+
+    .email-body .header {
+      margin: 0 auto;
+      text-align: center;
+      display: block;
+      padding: 20px 0;
+      background: #ececec;
+      height: 100px;
+    }
+
+    .email-body .header a {
+      padding: 20px 0;
+    }
+
+    .email-body address {
+      font-style: normal;
+      background: #f9f9f9;
+      border-left: 4px solid #0073aa;
+      padding: 10px;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    .email-body a {
+      color: #0073aa;
+      text-decoration: none;
+    }
+
+    .email-body a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{SITE_URL}}">
+        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      </a>
+    </div>
+
+    <p>Hi {{SELLER_NAME}},</p>
+
+    <p>
+      {{BUYER_NAME}} has agreed to purchase the 
+      <a href="{{POST_LINK}}">{{POST_TITLE}}</a> {{POST_TYPE}}, 
+      which sold for {{CURRENCY}} {{SELLING_PRICE}}.<br />
+      The system allows 72 hours to complete the sale. Once you have been paid, you should mark the 
+      {{POST_TYPE}} as sold.<br />
+      Here is the contact info for {{BUYER_NAME}}:
+    </p>
+
+    <address>
+      Name: {{BUYER_FULLNAME}}<br>
+      Address: {{BUYER_ADDRESS}}<br>
+      City: {{BUYER_CITY}}<br>
+      Country: {{BUYER_COUNTRY}}<br>
+      Postal code: {{BUYER_POSTAL_CODE}}<br>
+    </address>
+
+    <p>
+      You can 
+      <a href="{{SEND_EMAIL_LINK}}">Send Email To Buyer {{BUYER_NAME}}</a> or 
+      <a href="{{CREATE_INVOICE_LINK}}">Create an Invoice</a>.
+    </p>
+  </div>
+</body>
+</html>

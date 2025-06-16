@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tape Recorder Submission</title>
+  <style>
+    button {
+        background-color: #383e4d;
+        border: none;
+        padding: 10px 22px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    h5 {
+        border-bottom: 1px dotted #fff;
+    }
+
+    button a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .email-body {
+        margin: 5px 25px 10px 25px;
+    }
+
+    .email-body table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .email-body td,
+    .email-body th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .email-body .medium-4 {
+        border: 1px solid #dddddd;
+        width: 50%;
+        display: inline-block;
+        padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header" style="margin: 0 auto; text-align: center; padding:20px 0px; background: #ececec;">
+      <a href="{{ SITE_URL }}"><img class="img-center" src="{{ LOGO_URL }}" width="125" height="60" alt="Reel Reel Logo"></a>
+    </div>
+
+    <h3 class="heading">Here's new Tape Recorder Submitted Detail:</h3>
+
+    <table style="margin: 0 auto; text-align: center; padding:20px 0px; background: #ececec;">
+      <thead style="border-bottom: 2px solid #dddddd;">
+        <tr>
+          <th>Brand</th>
+          <th>Model</th>
+          <th style="display: {{TECHNICIAN_SHOP_NAME_VISIBILITY}}">Service technician</th>
+          <th>Email</th>
+          <th>Links</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ RECORDER_BRAND }}</td>
+          <td>{{ RECORDER_MODEL }}</td>
+          <td style="display: {{TECHNICIAN_SHOP_NAME_VISIBILITY}}">{{ TECHNICIAN_SHOP_NAME }}</td>
+          <td>{{ USER_EMAIL }}</td>
+          <td>
+            <a href="{{ COLLECTION_URL }}">{{ DISPLAY_NAME }} Collection</a> |
+            <a href="{{ POST_URL }}" target="_blank">View {{ POST_TITLE }} Tape Recorder</a> |
+            <a href="{{ POST_EDIT_URL }}" target="_blank">Edit {{ POST_TITLE }} Tape Recorder</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

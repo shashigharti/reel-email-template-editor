@@ -3,6 +3,7 @@
     "type": "wordpress-plugin",
     "autoload": {
         "psr-4": {
+            "ReelEmailTemplateEditor\\Database\\": "src/database/",
             "ReelEmailTemplateEditor\\Includes\\": "src/includes/",
             "ReelEmailTemplateEditor\\Rest\\": "src/rest/",
             "ReelEmailTemplateEditor\\": "src/"

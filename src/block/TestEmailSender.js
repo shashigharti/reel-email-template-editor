@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
+import { useState } from '@wordpress/element';
 
-export default function TestEmailSender({ template }) {
+export default function TestEmailSender({ setNotice }) {
   const [recipient, setRecipient] = useState('');
-  const [status, setStatus] = useState('');
 
-  const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
+  const isValidEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const sendTestEmail = async () => {
     if (!isValidEmail(recipient)) {
-      setStatus('Please enter a valid email address.');
+      setNotice({ status: 'error', message: 'Please enter a valid email address.' });
       return;
     }
 
-    setStatus('Sending...');
+    setNotice({ status: 'info', message: 'Sending...' });
     try {
-      const response = await fetch('/wp-json/reel/v1/send-test-email', {
+      const response = await fetch('/wp-json/reel/v1/email/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          recipient,
-          templateId: template.id,
-          subject: template.subject || '',
+          recipient_email: recipient
         }),
       });
 
       const result = await response.json();
       if (response.ok) {
-        setStatus('Email sent successfully!');
+        setNotice({ status: 'success', message: 'Email sent successfully!' });
       } else {
-        setStatus(`Error: ${result.message || 'Unknown error'}`);
+        setNotice({ status: 'error', message: `Error: ${result.message || 'Unknown error'}` });
       }
     } catch (err) {
-      setStatus('Failed to send email.');
+      setNotice({ status: 'error', message: 'Failed to send email.' });
+    } finally {
+      setTimeout(() => setNotice(null), 3000);
     }
   };
 
@@ -65,7 +65,6 @@ export default function TestEmailSender({ template }) {
           Send test email
         </button>
       </div>
-      {status && <p style={{ marginTop: 10 }}>{status}</p>}
     </div>
   );
 }
