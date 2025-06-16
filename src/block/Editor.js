@@ -7,6 +7,7 @@ import {
 } from '@wordpress/components';
 import 'react-quill/dist/quill.snow.css';
 import {
+  fetchHooks,
   fetchTemplates,
   fetchTemplateBySlug,
   saveTemplate,
@@ -17,38 +18,44 @@ import { generateSlug } from '../utils/common.js';
 import VariableList from './VariableList';
 import Menu from './Menu';
 import QuillEditor from './QuillEditor';
-import TestEmailSender from './TestEmail.js';
+import TestEmailSender from './TestEmailSender.js';
+import HookList from './HookList.js';
 
 export default function Editor() {
   const [templates, setTemplates] = useState([]);
+  const [hooks, setHooks] = useState([]);
   const [selectedTemplateId, setSelectedTemplateId] = useState(null);
-  const [content, setContent] = useState('');
-  const [subject, setSubject] = useState('');
+  const [content, setContent] = useState(null);
+  const [subject, setSubject] = useState(null);
+  const [hookID, setHookID] = useState(null);
+  const [description, setDescription] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [notice, setNotice] = useState(null);
-  const [selectedActions, setSelectedActions] = useState({});
-  const [title, setTitle] = useState('');
-  const [slug, setSlug] = useState('');
+  const [title, setTitle] = useState(null);
+  const [slug, setSlug] = useState(null);
   const quillRef = useRef(null);
-
-  const wordpressActions = [
-    { key: 'publish_post', label: 'Post published' },
-  ];
 
   const selectedTemplate = templates.find(t => t.id === selectedTemplateId);
 
   useEffect(() => {
+    console.log('Fetching templates...');
     fetchTemplates()
       .then((data) => {
         setTemplates(data);
-
         if (data.length > 0) {
           setSelectedTemplateId(data[0].id);
-        } else {
-          setSelectedTemplateId('');
         }
       })
       .catch((err) => console.error('Error fetching templates:', err));
+    
+    console.log('Fetching hooks...');
+    fetchHooks()
+      .then((data) => { 
+        if (data.length > 0) {
+          setHooks(data);
+        }
+      })
+      .catch((err) => console.error('Error fetching hooks:', err));
   }, []);
 
   useEffect(() => {
@@ -63,6 +70,8 @@ export default function Editor() {
         let title = template.title;
         let slug = template.slug;
         let subject = template.subject;
+        let hook_id = template.hook_id;
+        let description = template.description;
 
         if (template.slug === 'default') {
           title = `${title}-${templates.length + 1}`;
@@ -70,14 +79,17 @@ export default function Editor() {
         }
         setTitle(title);
         setSlug(slug);
-        setSubject(subject);
+        setSubject(subject);        
+        setDescription(description);
+
+        setHookID(hook_id);
       })
       .catch(() => {
         setContent('Failed to load template.');
       });
+
   }, [selectedTemplateId]);
-
-
+  
   function onSave() {
     if (!selectedTemplate) return;
 
@@ -87,7 +99,9 @@ export default function Editor() {
       title,
       slug,
       subject,
-      content,
+      content,      
+      description,
+      hook_id: hookID,
     };
 
     saveTemplate(selectedTemplate.id, payload)
@@ -136,14 +150,7 @@ export default function Editor() {
         setTimeout(() => setNotice(null), 3000);
       });
   }
-
-  function toggleAction(key) {
-    setSelectedActions(prev => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  }
-
+  
   const onTitleChange = (newTitle) => {
     setTitle(newTitle);
     setSlug(generateSlug(newTitle));
@@ -203,6 +210,13 @@ export default function Editor() {
             }
           />
           <div style={{ marginTop: '10px' }}>
+            <TextControl 
+              value={description} 
+              onChange={(val)=>setDescription(val)}
+              label="Description"
+            />
+          </div>
+          <div style={{ marginTop: '10px' }}>
             <div style={{ display: 'flex', gap: '10px' }}>
               <Button variant="primary" onClick={onSave} disabled={isSaving}>
                 {isSaving ? 'Saving...' : 'Save Template'}
@@ -232,10 +246,12 @@ export default function Editor() {
               }
             }}
           />
+          <HookList onAttach={()=>setHookID(hookID)} selectedHookID={hookID} hooks={hooks}  
+          />
         </div>
       </div>
 
-      <TestEmailSender template={selectedTemplate} />
+      <TestEmailSender template={selectedTemplate} setNotice={setNotice} />
     </div>    
   );
 }

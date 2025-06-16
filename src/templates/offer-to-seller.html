@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .email-body {
+      margin: 5px 25px 10px 25px;
+      border: 2px solid #ad4700;
+      background-color: #ccc;
+      padding: 1% 5% 1% 15%;
+      font-family: Arial, sans-serif;
+    }
+
+    .email-body .header {
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px 0px;
+      background: #ececec;
+    }
+
+    .img-center {
+      display: block;
+      margin: 0 auto;
+    }
+
+    a {
+      color: #ad4700;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{SITE_URL}}">
+        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      </a>
+    </div>
+    <p>
+      Hi,<br />
+      R-R member <strong>{{SELLER_NAME}}</strong> has made an offer of <strong>{{CURRENCY}} {{OFFER_PRICE}}</strong> on <strong>{{PRODUCT_NAME}}</strong>.<br />
+      This offer is valid for 24 hours and will then expire.<br />
+      Accept Offer or Counter Offer:
+      <a href="{{OFFER_LINK}}">Send</a>
+    </p>
+  </div>
+</body>
+</html>

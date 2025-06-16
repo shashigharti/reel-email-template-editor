@@ -5,6 +5,8 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 global $wpdb;
-$table_name = $wpdb->prefix . 'reel_email_templates';
+$table_templates = $wpdb->prefix . 'reel_email_templates';
+$table_hooks = $wpdb->prefix . 'reel_hooks';
 
-$wpdb->query("DROP TABLE IF EXISTS $table_name");
+$wpdb->query("DROP TABLE IF EXISTS `{$table_templates}`");
+$wpdb->query("DROP TABLE IF EXISTS `{$table_hooks}`");

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .email-body {
+      margin: 5px 25px 10px 25px;
+      padding: 1% 5% 1% 15%;
+    }
+
+    .email-body .header {
+      margin: 0 auto;
+      text-align: center;
+      display: block;
+      padding: 20px 0px;
+      background: #ececec;
+      height: 100px;
+    }
+
+    .email-body .header a {
+      padding: 20px 0px;
+    }
+
+    .img-center {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{SITE_URL}}">
+        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      </a>
+    </div>
+    <p>Hi {{BSA_SELLER_NAME}},</p>
+    <p>
+      {{BUYER_NAME}} has won the bidding for the product <strong>{{PRODUCT_TITLE}} {{PRODUCT_TYPE}}</strong> and the system allows 72 hours to complete the sale. Once you have been paid, you should mark the <strong>{{PRODUCT_TITLE}} {{PRODUCT_TYPE}}</strong> as sold.<br />
+      {{BUYER_NAME}} is located in {{CITY}}, {{COUNTRY}} and you should communicate with the buyer or send an invoice.
+    </p>
+  </div>
+</body>
+</html>

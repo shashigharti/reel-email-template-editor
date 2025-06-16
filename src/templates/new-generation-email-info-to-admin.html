@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        .email-body {
+            margin: 15px auto;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+        }
+
+        .email-body table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .email-body td,
+        .email-body th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .email-body .header {
+            margin: 0 auto;
+            text-align: center;
+            display: block;
+            padding: 20px 0px;
+            background: #ececec;
+            height: 100px;
+        }
+
+        .email-body .header a {
+            padding: 20px 0px;
+        }
+
+        .img-center {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-body">
+        <div class="header">
+            <a href="{{SITE_URL}}">
+                <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+            </a>
+        </div>
+
+        <p>
+            This new generation tape was submitted by ({{MEMBER_NAME}}, {{MEMBER_EMAIL}}) and can be reviewed in the pending section:
+            <a href="{{ADMIN_EDIT_URL}}">{{ADMIN_EDIT_URL}}</a>
+        </p>
+    </div>
+</body>
+</html>

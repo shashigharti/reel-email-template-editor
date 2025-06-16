@@ -2,6 +2,8 @@
 namespace ReelEmailTemplateEditor\Rest;
 
 use ReelEmailTemplateEditor\Includes\TemplateRepository;
+use ReelEmailTemplateEditor\Includes\EmailService;
+
 use WP_REST_Controller;
 use WP_REST_Server;
 use WP_REST_Request;
@@ -11,6 +13,12 @@ class TemplateController extends WP_REST_Controller {
     protected $namespace = 'reel/v1';
 
     public function register_routes() {
+
+        register_rest_route($this->namespace, '/email/send', [
+            'methods'  => 'POST',
+            'callback' => [$this, 'send_test_email'],
+            'permission_callback' => '__return_true',
+        ]);
 
         register_rest_route($this->namespace, '/template/import', [
             'methods' => WP_REST_Server::CREATABLE,
@@ -56,8 +64,7 @@ class TemplateController extends WP_REST_Controller {
                     'required' => true,
                 ],
             ],
-        ]);
-        
+        ]);        
         
     }
 
@@ -89,14 +96,13 @@ class TemplateController extends WP_REST_Controller {
 
     public function save_template(WP_REST_Request $request) {
         $id = $request->get_param('id');
-        $content = $request->get_param('content');
-        $subject = $request->get_param('subject');
+        $params = $request->get_params();
 
         if (!TemplateRepository::get_template_by_id($id)) {
             return new WP_REST_Response(['message' => 'Template not found'], 404);
         }
 
-        TemplateRepository::save_template_content($id, $content, $subject);
+        TemplateRepository::save_template($id, $params);
 
         return new WP_REST_Response(['message' => 'Template saved'], 200);
     }
@@ -163,6 +169,39 @@ class TemplateController extends WP_REST_Controller {
         } else {
             return new WP_REST_Response(['message' => 'Failed to delete template'], 500);
         }
+    }
+
+    public function send_test_email(WP_REST_Request $request) {
+        $to        = $request->get_param('recipient_email');
+        $subject        = "Test Email from Reel-to-Reel";
+
+        if (empty($to) || empty($subject)) {
+            return new WP_REST_Response(['message' => 'Missing required parameters'], 400);
+        }
+
+        $template = TemplateRepository::get_template_by_slug('default');
+        if (!$template) {
+            return new WP_REST_Response(['message' => 'Template not found'], 404);
+        }
+
+        $content = $template['content'];
+
+        $context = [];
+        $user =  get_user_by( 'email', $to );        
+
+        if (!$user) {
+            return new WP_REST_Response(['message' => 'User not found'], 404);
+        }
+
+        $context['user'] = $user; 
+        $email_service = new EmailService();
+        $result = $email_service->send_email($to, $subject, $content, $context);
+
+        if (is_wp_error($result)) {
+            return new WP_REST_Response(['message' => $result->get_error_message()], 500);
+        }
+
+        return new WP_REST_Response(['message' => 'Email sent successfully'], 200);
     }
 
 }

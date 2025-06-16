@@ -8,5 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'ReelEmailTemplateEditor\\Rest\\' => array($baseDir . '/src/rest'),
     'ReelEmailTemplateEditor\\Includes\\' => array($baseDir . '/src/includes'),
+    'ReelEmailTemplateEditor\\Database\\' => array($baseDir . '/src/database'),
     'ReelEmailTemplateEditor\\' => array($baseDir . '/src'),
 );

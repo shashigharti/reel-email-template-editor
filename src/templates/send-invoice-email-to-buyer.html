@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invoice Order Item Lists</title>
+  <style>
+    .email-body {
+      margin: 15px auto;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+    .header {
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px 0;
+      background: #ececec;
+    }
+    .img-center {
+      display: block;
+      margin: 0 auto;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      text-align: left;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      padding: 8px;
+    }
+    thead tr {
+      border-bottom: 2px solid #dddddd;
+    }
+    hr {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+    address {
+      font-style: normal;
+      line-height: 1.4;
+    }
+    p {
+      margin: 4px 0;
+      font-size: 15px;
+    }
+    .item_count, .tamount {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{ SITE_URL }}">
+        <img class="img-center" src="{{ LOGO_URL }}" width="125" height="60" alt="Reel Reel Logo" />
+      </a>
+    </div>
+
+    <h3 class="heading">Invoice Order Item Lists</h3>
+
+    {{ORDERED_ITEMS}}
+
+    <hr />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Shipping Address</th>
+          <th>Payment Information</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <address>
+              {{ BUYER_DISPLAY_NAME }}<br />
+              {{ CITY }}, {{ POSTAL_CODE }}<br />
+              {{ COUNTRY }}<br />
+            </address>
+          </td>
+          <td>
+            <p>Method: {{ PAYMENT_METHOD }}</p>
+            {{#DISPLAY_PAYPAL_ADDRESS}}
+            <p>{{ SELLER_NAME }} would like to be paid on this PayPal Address - {{ PAYPAL_ADDRESS }}</p>
+            {{/DISPLAY_PAYPAL_ADDRESS}}
+            <p>Items: <span class="item_count">{{ TOTAL_ITEMS }}</span></p>
+            <p>Total GBP: <span class="tamount">{{ TOTAL_AMOUNT }}</span></p>
+            <p>Shipping Amount: {{ SHIPPING_PRICE }}</p>
+            <p>Additional Message: {{ ADDITIONAL_INFO }}</p>
+            <p>Order Total GBP: <span class="tamount">{{ ORDER_TOTAL }}</span></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

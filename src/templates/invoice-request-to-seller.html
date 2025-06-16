@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        .email-body {
+            margin: 15px auto;
+            border: 2px solid #ad4700;
+            background-color: #ccc;
+            padding: 30px;
+            max-width: 600px;
+            font-family: Arial, sans-serif;
+        }
+
+        .email-body table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .email-body td,
+        .email-body th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .header {
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px 0px;
+            background: #ececec;
+        }
+
+        .img-center {
+            display: block;
+            margin: 0 auto;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ad4700;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+        }
+
+        address {
+            font-style: normal;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-body">
+        <div class="header">
+            <a href="{{SITE_URL}}">
+                <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+            </a>
+        </div>
+        <p>
+            Hi {{SELLER_DISPLAY_NAME}},<br />
+            The buyer of:<br />
+            {{ITEM_LIST}}<br />
+            would like you to invoice for the purchase.<br />
+            This is the address to send to:
+            <address>
+                Address: {{ADDRESS}}<br>
+                City: {{CITY}}<br>
+                Country: {{COUNTRY}}<br>
+                Postal code: {{POSTAL_CODE}}<br>
+            </address>
+        </p>
+        {{#if COMMENT}}
+            <p>
+                <b>COMMENT:</b> {{COMMENT}}
+            </p>
+        {{/if}}
+        <button>
+            <a href="{{INVOICE_URL}}" target="_blank">
+                Create Invoice For {{BUYER_FULLNAME}}
+            </a>
+        </button>
+    </div>
+</body>
+
+</html>

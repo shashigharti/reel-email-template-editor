@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .email-body {
+            margin: 5px 25px 10px 25px;
+            padding: 1% 5% 1% 5%;
+            background-color: #f9f9f9;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background: #ececec;
+        }
+        h3, h5 {
+            margin: 10px 0;
+        }
+        h5 {
+            border-bottom: 1px dotted #000;
+            padding-bottom: 5px;
+        }
+        .menu-details-title {
+            font-weight: bold;
+        }
+        button {
+            background-color: #383e4d;
+            border: none;
+            padding: 10px 22px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-body">
+        <div class="header">
+            <a href="{{SITE_URL}}" target="_blank">
+                <img src="{{REEL_LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo" />
+            </a>
+        </div>
+
+        <h5>{{AUTHOR_NAME}} has added a new label and maybe a duplicator. It is in the pending section.</h5>
+
+        <strong>Here is the Label or Duplicator detail:</strong><br />
+        <h3>{{POST_TITLE}}{{LABELS_COUNTRY_NAME ? ' - ' + LABELS_COUNTRY_NAME : ''}}</h3>
+
+        <div class="logo" style="display: {{LABELS_FEATURED_IMAGE_VISIBILITY}}">
+            <img id="logo-image" src="{{LABELS_FEATURED_IMAGE}}" alt="Label Logo" />
+            <h5 class="date">
+                {{BUSINESS_START}}
+                <span style="display: {{BUSINESS_PRESENT_VISIBILITY}}"> To Present</span>
+                <span style="display: {{BUSINESS_END_VISIBILITY}}"> To {{BUSINESS_END}}</span>
+            </h5>
+        </div>
+
+        <div class="in-business" style="display: {{BUSINESS_YEARS_VISIBILITY}}">
+            <h5 class="menu-details-title">Years in Business</h5>
+            <div class="date">
+                {{BUSINESS_START}}:
+                <span style="display: {{BUSINESS_PRESENT_VISIBILITY}}"> To Present</span>
+                <span style="display: {{BUSINESS_END_VISIBILITY}}"> To {{BUSINESS_END}}</span>
+            </div>
+        </div>
+
+        <div class="start-end-making" style="display: {{MAKING_YEARS_VISIBILITY}}">
+            <h5 class="menu-details-title">Years making Pre-recorded Tapes</h5>
+            <div class="date">
+                {{MAKING_START}}
+                <span style="display: {{MAKING_PRESENT_VISIBILITY}}"> To Present</span>
+                <span style="display: {{MAKING_END_VISIBILITY}}"> To {{MAKING_END}}</span>
+            </div>
+        </div>
+
+        <br />
+
+        <button>
+            <a href="{{POST_EDIT_URL}}" target="_blank">Edit Post</a>
+        </button>
+    </div>
+</body>
+</html>

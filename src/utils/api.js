@@ -4,6 +4,10 @@ export function fetchTemplates() {
   return apiFetch({ path: '/reel/v1/templates' });
 }
 
+export function fetchHooks() {
+  return apiFetch({ path: '/reel/v1/hooks' });
+}
+
 export function fetchTemplateBySlug(slug) {
   let path = `/reel/v1/template/${encodeURIComponent(slug)}`;
   return apiFetch({ path });

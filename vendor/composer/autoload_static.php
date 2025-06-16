@@ -11,6 +11,7 @@ class ComposerStaticInitaaeba3d5640dd65a252cef6549928a3b
         array (
             'ReelEmailTemplateEditor\\Rest\\' => 29,
             'ReelEmailTemplateEditor\\Includes\\' => 33,
+            'ReelEmailTemplateEditor\\Database\\' => 33,
             'ReelEmailTemplateEditor\\' => 24,
         ),
     );
@@ -23,6 +24,10 @@ class ComposerStaticInitaaeba3d5640dd65a252cef6549928a3b
         'ReelEmailTemplateEditor\\Includes\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/includes',
+        ),
+        'ReelEmailTemplateEditor\\Database\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/database',
         ),
         'ReelEmailTemplateEditor\\' => 
         array (

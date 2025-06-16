@@ -115,15 +115,35 @@ class TemplateRepository {
         return null;
     }
 
-    public static function save_template_content($id, $content, $subject = '') {
+    public static function save_template($id, $params){
         global $wpdb;
         $table = self::get_table_name();
 
+        $data = [
+            'content' => $params['content'],
+            'slug' => $params['slug'],
+            'subject' => $params['subject'],
+            'title' => $params['title'],
+            'description' => $params['description'] ?? '',
+            'hook_id' => $params['hook_id'] ?? null,
+            'updated_at' => current_time('mysql'),
+        ];
+        
+        if (empty($id)) {
+            $data['created_at'] = current_time('mysql');
+            $inserted = $wpdb->insert(
+                $table,
+                $data,
+                ['%s', '%s', '%s', '%s', '%s', '%s']
+            );
+            return $inserted !== false;
+        }
+
         $updated = $wpdb->update(
             $table,
-            ['content' => $content, 'updated_at' => current_time('mysql'), 'subject' => $subject],
+            $data,
             ['id' => $id],
-            ['%s', '%s', '%s'],
+            ['%s', '%s', '%s', '%s', '%s', '%s'],
             ['%d']
         );
 

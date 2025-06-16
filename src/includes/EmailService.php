@@ -2,34 +2,28 @@
 
 namespace ReelEmailTemplateEditor\Includes;
 
-class EmailService {
+use ReelEmailTemplateEditor\Includes\PlaceholderRegistry;
 
-    public function getTemplateContent(int $templateId): string {
-        $post = get_post($templateId);
+class EmailService {
+    
+    public function get_template_content( int $template_id ): string {
+        $post = get_post( $template_id );
+
         return $post ? $post->post_content : '';
     }
 
+    public function send_email(string $to, string $subject, string $template_html, array $context = []) {
+        $body = PlaceholderRegistry::resolve_all($template_html, $context);
 
-    public function replaceVariables(string $templateHtml, array $variables = []): string {
-        $globalVars = get_option('reel_email_variables', []);
-        $allVars = array_merge($globalVars, $variables);
-
-        foreach ($allVars as $key => $value) {
-            $templateHtml = str_replace('{{' . $key . '}}', esc_html($value), $templateHtml);
-        }
-
-        return $templateHtml;
-    }
-
-    public function sendEmail(string $to, string $subject, string $templateHtml, array $variables = []): bool|\WP_Error {
-        $body = $this->replaceVariables($templateHtml, $variables);
-
-        $headers = ['Content-Type: text/html; charset=UTF-8'];
+        $headers = [ 'Content-Type: text/html; charset=UTF-8' ];
 
         $result = wp_mail($to, $subject, $body, $headers);
 
         if (!$result) {
-            return new \WP_Error('send_failed', __('Failed to send email', 'reel-email-template-editor'));
+            return new \WP_Error(
+                'send_failed',
+                __('Failed to send email', 'reel-email-template-editor')
+            );
         }
 
         return true;

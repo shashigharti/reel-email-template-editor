@@ -16,8 +16,8 @@ use ReelEmailTemplateEditor\Installer;
 register_activation_hook(__FILE__, [Installer::class, 'install']);
 register_deactivation_hook(__FILE__, [Installer::class, 'deactivate']);
 
-function ReelEmailTemplateEditorInit() {
+function reel_email_template_editor_init() {
     $plugin = new Plugin();
     $plugin->register();
 }
-add_action('plugins_loaded', 'ReelEmailTemplateEditorInit');
+add_action('plugins_loaded', 'reel_email_template_editor_init');

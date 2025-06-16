@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .email-body {
+      margin: 15px auto;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+    }
+
+    .email-body table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .email-body td,
+    .email-body th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    .email-body .header {
+      margin: 0 auto;
+      text-align: center;
+      display: block;
+      padding: 20px 0px;
+      background: #ececec;
+      height: 100px;
+    }
+
+    .email-body .header a {
+      padding: 20px 0px;
+    }
+
+    .img-center {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="header">
+      <a href="{{SITE_URL}}">
+        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      </a>
+    </div>
+
+    <h1 style="margin-bottom: 10px;">Reel-Reel.com</h1>
+
+    {{#if IS_WEBSITE_NO}}
+      <p>{{MEMBER_NAME}} tried to submit a new generation tape producer with the following information:</p>
+      <p>Tape producer: {{TAPE_PRODUCER}}</p>
+      <p>Country of manufacture: {{MANUFACTURE_COUNTRY}}</p>
+      <p>With this explanation why they believe it is a genuine tape production:</p>
+      <p>{{INFORMATION}}</p>
+    {{else}}
+      <p>{{MEMBER_NAME}} has submitted a new generation tape producer.</p>
+      <p>Tape producer: {{TAPE_PRODUCER}}</p>
+      <p>Country of manufacture: {{MANUFACTURE_COUNTRY}}</p>
+      <p>Website: {{WEB_URL}}</p>
+    {{/if}}
+  </div>
+</body>
+</html>
