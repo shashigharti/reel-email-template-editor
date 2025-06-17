@@ -7,12 +7,22 @@ use ReelEmailTemplateEditor\Includes\PlaceholderRegistry;
 
 class Plugin {
     private $page_hook;
+    private static $instance = null;
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
     public function register() {
+        $this->register_placeholders();
+
         add_action('rest_api_init', [$this, 'register_rest_routes']);
+        add_action('wp_loaded', [$this, 'register_placeholders']);
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
-        add_action('plugins_loaded', [$this, 'register_placeholders']);
     }
 
     public function register_rest_routes() {
@@ -63,7 +73,7 @@ class Plugin {
         });
 
         PlaceholderRegistry::register('username', function ($context) {
-            return $context['user']->username ?? '';
+            return $context['user']->user_login ?? '';
         });
 
         PlaceholderRegistry::register('admin', function ($context) {

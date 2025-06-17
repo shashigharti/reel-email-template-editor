@@ -5,7 +5,7 @@ import {
   Notice,
   TextControl,
 } from '@wordpress/components';
-import 'react-quill/dist/quill.snow.css';
+
 import {
   fetchHooks,
   fetchTemplates,
@@ -17,7 +17,7 @@ import {
 import { generateSlug } from '../utils/common.js'; 
 import VariableList from './VariableList';
 import Menu from './Menu';
-import QuillEditor from './QuillEditor';
+import CEditor from './CEditor.js';
 import TestEmailSender from './TestEmailSender.js';
 import HookList from './HookList.js';
 
@@ -25,15 +25,15 @@ export default function Editor() {
   const [templates, setTemplates] = useState([]);
   const [hooks, setHooks] = useState([]);
   const [selectedTemplateId, setSelectedTemplateId] = useState(null);
-  const [content, setContent] = useState(null);
-  const [subject, setSubject] = useState(null);
+  const [content, setContent] = useState('');
+  const [subject, setSubject] = useState('');
   const [hookID, setHookID] = useState(null);
-  const [description, setDescription] = useState(null);
+  const [description, setDescription] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [notice, setNotice] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [slug, setSlug] = useState(null);
-  const quillRef = useRef(null);
+  const [title, setTitle] = useState('');
+  const [slug, setSlug] = useState('');
+  const editorInstanceRef = useRef(null);
 
   const selectedTemplate = templates.find(t => t.id === selectedTemplateId);
 
@@ -135,7 +135,13 @@ export default function Editor() {
     }
   }
 
-  function onImport(){
+  function onImport() {
+    const confirmed = window.confirm(
+      'Importing templates will overwrite existing ones with matching slugs. Do you want to continue?'
+    );
+
+    if (!confirmed) return;
+
     importTemplate()
       .then(() => {
         setNotice({ status: 'success', message: 'Templates imported successfully!' });
@@ -146,7 +152,8 @@ export default function Editor() {
       })
       .catch(() => {
         setNotice({ status: 'error', message: 'Failed to import template.' });
-      }).finally(() => {
+      })
+      .finally(() => {
         setTimeout(() => setNotice(null), 3000);
       });
   }
@@ -202,7 +209,8 @@ export default function Editor() {
             </div>
           </div>          
           <Menu onImport={onImport} onAddNew={() => {setSelectedTemplateId('')}}/>
-          <QuillEditor
+          <CEditor
+            ref={editorInstanceRef}
             initialContent={content}
             onChange={(value) => {
                 setContent(value);
@@ -239,10 +247,8 @@ export default function Editor() {
         <div style={{ width: '300px', borderLeft: '1px solid #ccc', paddingLeft: '15px' }}> 
           <VariableList
             onInsert={(variable) => {
-              const quill = quillRef.current?.getEditor();
-              if (quill) {
-                const range = quill.getSelection();
-                quill.insertText(range.index, `{{${variable}}}`, 'user');
+              if (editorInstanceRef.current?.insertVariable) {
+                editorInstanceRef.current.insertVariable(variable);
               }
             }}
           />

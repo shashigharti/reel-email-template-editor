@@ -48,7 +48,9 @@ class Installer {
             ON DELETE SET NULL
         ");
 
-        HookSeeder::seed($wpdb);
+        $default_hooks = require __DIR__ . '/config/hooks.php';
+        $seeder = new HookSeeder($hooks_table, $default_hooks);
+        $seeder->seed();
     }
 
     public static function deactivate() {

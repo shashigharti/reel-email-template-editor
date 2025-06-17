@@ -10,7 +10,7 @@ export default function HookList({ onAttach, selectedHookID, hooks = []}) {
 
   return (
     <div style={{ marginTop: '30px' }}>
-      <h3 style={{ marginBottom: '12px', fontSize: '16px' }}>Select Event</h3>
+      <h3 style={{ marginBottom: '12px', fontSize: '16px' }}>Select Action</h3>
       <div
         style={{
           maxHeight: '220px',

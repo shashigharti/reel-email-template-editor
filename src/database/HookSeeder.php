@@ -3,40 +3,35 @@
 namespace ReelEmailTemplateEditor\Database;
 
 class HookSeeder {
-    public static function seed() {
+    protected string $hooks_table;
+    protected array $default_hooks;
+
+    public function __construct(string $hooks_table, array $default_hooks) {
+        $this->hooks_table = $hooks_table;
+        $this->default_hooks = $default_hooks;
+    }
+
+    public function seed(){
         global $wpdb;
-
-        $table = $wpdb->prefix . 'reel_hooks';
-
-        $default_hooks = [
-            [
-                'hook_name' => 'user_registered',
-                'name' => 'User Registered',
-                'description' => 'Triggered when a new user registers.'
-            ],
-            [
-                'hook_name' => 'order_completed',
-                'name' => 'Order Completed',
-                'description' => 'Triggered when an order is marked as completed.'
-            ],
-            [
-                'hook_name' => 'password_reset',
-                'name' => 'Password Reset',
-                'description' => 'Triggered when a user resets their password.'
-            ]
-        ];
-
-        foreach ($default_hooks as $hook) {
-            $exists = $wpdb->get_var(
-                $wpdb->prepare("SELECT COUNT(*) FROM $table WHERE name = %s", $hook['name'])
+        foreach ($this->default_hooks as $hook) {
+            $exists = (int) $wpdb->get_var(
+                $wpdb->prepare("SELECT COUNT(*) FROM {$this->hooks_table} WHERE hook_name = %s", $hook['hook_name'])
             );
 
             if (!$exists) {
-                $wpdb->insert($table, [
-                    'hook_name'    => $hook['hook_name'],
-                    'name'         => $hook['name'],
-                    'description'  => $hook['description']
-                ]);
+                $wpdb->insert(
+                    $this->hooks_table,
+                    [
+                        'hook_name'   => $hook['hook_name'],
+                        'name'        => $hook['name'],
+                        'description' => $hook['description'],
+                    ],
+                    [
+                        '%s',
+                        '%s',
+                        '%s',
+                    ]
+                );
             }
         }
     }

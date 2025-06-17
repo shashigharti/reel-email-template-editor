@@ -64,7 +64,15 @@ class TemplateController extends WP_REST_Controller {
                     'required' => true,
                 ],
             ],
-        ]);        
+        ]);  
+        
+        register_rest_route($this->namespace, '/variables', [
+            'methods' => WP_REST_Server::READABLE,
+            'callback' => [$this, 'get_variable_list'],
+            'permission_callback' => function() {
+                return current_user_can('edit_posts');
+            }
+        ]);
         
     }
 
@@ -202,6 +210,18 @@ class TemplateController extends WP_REST_Controller {
         }
 
         return new WP_REST_Response(['message' => 'Email sent successfully'], 200);
+    }
+
+    public function get_variable_list() {
+        $variables_file = plugin_dir_path(__FILE__) . '../config/variables.php';
+
+        if (!file_exists($variables_file)) {
+            return new WP_REST_Response(['message' => 'Variable list not found'], 500);
+        }
+
+        $variables = include $variables_file;
+
+        return new WP_REST_Response($variables, 200);
     }
 
 }

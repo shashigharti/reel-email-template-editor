@@ -34,3 +34,8 @@ export function deleteTemplate(id) {
     method: 'DELETE',
   });
 }
+
+export function fetchVariables() {
+  return apiFetch({ path: '/reel/v1/variables' });
+}
+

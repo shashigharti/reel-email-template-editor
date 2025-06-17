@@ -1,15 +1,20 @@
+import { useState, useEffect } from '@wordpress/element';
 import { Button } from '@wordpress/components';
+import { fetchVariables } from '../utils/api';
 
-const defaultVariables = [
-  { key: 'username', label: 'Username', description: 'The name of the user.' },
-  { key: 'email', label: 'Email Address', description: 'The user\'s email address.' },
-  { key: 'product_price', label: 'Product Price', description: 'The price of the product.' },
-  { key: 'product_type', label: 'Product Type', description: 'The type or category of the product.' },
-  { key: 'seller_name', label: 'Seller Name', description: 'The name of the product seller.' },
-  { key: 'seller_location', label: 'Seller Location', description: 'The location of the product seller.' },
-];
+export default function VariableList({ onInsert }) {
+  const [variables, setVariables] = useState([]);
 
-export default function VariableList({ onInsert, variables = defaultVariables }) {
+  useEffect(() => {
+    fetchVariables()
+      .then((data) => {
+        setVariables(data);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch variables:', error);
+      });
+  }, []);
+
   return (
     <div style={{ marginTop: '30px' }}>
       <h3 style={{ marginBottom: '10px' }}>Insert Variables</h3>
