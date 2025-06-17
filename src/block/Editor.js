@@ -252,7 +252,7 @@ export default function Editor() {
               }
             }}
           />
-          <HookList onAttach={()=>setHookID(hookID)} selectedHookID={hookID} hooks={hooks}  
+          <HookList onAttach={(hID)=>setHookID(hID)} selectedHookID={hookID} hooks={hooks}  
           />
         </div>
       </div>

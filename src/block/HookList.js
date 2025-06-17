@@ -4,7 +4,6 @@ export default function HookList({ onAttach, selectedHookID, hooks = []}) {
   const handleAttach = (id) => {
     if (id) {
       onAttach(id);
-      setSelectedID(id)
     }
   };
 
