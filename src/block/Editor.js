@@ -248,12 +248,11 @@ export default function Editor() {
           <VariableList
             onInsert={(variable) => {
               if (editorInstanceRef.current?.insertVariable) {
-                editorInstanceRef.current.insertVariable(variable);
+                editorInstanceRef.current.insertVariable(`{{${variable}}}`);
               }
             }}
           />
-          <HookList onAttach={(hID)=>setHookID(hID)} selectedHookID={hookID} hooks={hooks}  
-          />
+          <HookList onAttach={(hID)=>setHookID(hID)} selectedHookID={hookID} hooks={hooks}  />
         </div>
       </div>
 
