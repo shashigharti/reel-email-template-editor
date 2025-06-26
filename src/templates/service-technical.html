@@ -1,8 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <style>
+      button {
+        background-color: #383e4d;
+        border: none;
+        padding: 10px 22px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+      h5 {
+        border-bottom: 1px dotted #fff;
+        padding-bottom: 8px;
+        color: #333;
+      }
+      button a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+      }
       .email-body {
         margin: 5px 25px 10px 25px;
         border: 2px solid #ad4700;
@@ -11,31 +32,25 @@
         font-family: Arial, sans-serif;
         color: #333;
       }
-
       .header {
         margin: 0 auto;
         text-align: center;
         padding: 20px 0;
         background: #ececec;
       }
-
       .img-center {
         display: block;
-        margin: 0 auto;
+        margin: 0 auto 15px auto;
+        max-width: 200px;
+        height: auto;
       }
-
       p {
         font-size: 15px;
         line-height: 1.4;
+        margin: 8px 0;
       }
-
-      a {
-        color: #ad4700;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
+      strong {
+        color: #000;
       }
     </style>
   </head>
@@ -53,25 +68,34 @@
         </a>
       </div>
 
-      <p>Hi {{seller_name}},</p>
+      <h5>
+        You are getting this email because someone submitted new service &
+        technicians
+      </h5>
 
-      <p>
-        {{buyer_name}} has requested an invoice for the
-        <strong>{{product_title}} {{product_type}}</strong>. Once you have been
-        paid, you should mark the
-        <strong>{{product_title}} {{product_type}}</strong> as sold.
-        <br />
+      <strong>Here is the post details:</strong><br />
 
-        {{buyer_name}} is located in {{city}}, {{country}}, and you should
-        communicate with the buyer or
+      <img
+        src="{{service_logo_url}}"
+        alt="{{service_logo_title}}"
+        class="img-center"
+      />
 
-        <a
-          href="{{create_invoice_link}}"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Send an Invoice</a
-        >.
-      </p>
+      <p><strong>Service Name:</strong> {{service_shop_name}}</p>
+      <p><strong>Location - City, Country:</strong> {{service_location}}</p>
+      <p><strong>Address:</strong> {{service_address}}</p>
+      <p><strong>Email:</strong> {{service_email}}</p>
+
+      <button>
+        <a href="{{post_permalink}}" target="_blank" rel="noopener noreferrer"
+          >View Post</a
+        >
+      </button>
+      <button>
+        <a href="{{post_edit_url}}" target="_blank" rel="noopener noreferrer"
+          >Edit Post</a
+        >
+      </button>
 
       <p>Yours sincerely,</p>
       <p>{{admin}}</p>

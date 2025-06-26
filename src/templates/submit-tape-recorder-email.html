@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Tape Recorder Submission</title>
-  <style>
-    button {
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tape Recorder Submission</title>
+    <style>
+      button {
         background-color: #383e4d;
         border: none;
         padding: 10px 22px;
@@ -13,74 +13,121 @@
         display: inline-block;
         font-size: 16px;
         margin-bottom: 10px;
-    }
+      }
 
-    h5 {
+      h5 {
         border-bottom: 1px dotted #fff;
-    }
+      }
 
-    button a {
+      button a {
         color: #fff;
         text-decoration: none;
-    }
+      }
 
-    .email-body {
+      .email-body {
         margin: 5px 25px 10px 25px;
-    }
+      }
 
-    .email-body table {
+      .email-body table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
-    }
+      }
 
-    .email-body td,
-    .email-body th {
+      .email-body td,
+      .email-body th {
         border: 1px solid #dddddd;
         text-align: left;
         padding: 8px;
-    }
+      }
 
-    .email-body .medium-4 {
+      .email-body .medium-4 {
         border: 1px solid #dddddd;
         width: 50%;
         display: inline-block;
         padding: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div class="email-body">
-    <div class="header" style="margin: 0 auto; text-align: center; padding:20px 0px; background: #ececec;">
-      <a href="{{ SITE_URL }}"><img class="img-center" src="{{ LOGO_URL }}" width="125" height="60" alt="Reel Reel Logo"></a>
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="email-body">
+      <div class="header">
+        <a href="https://reel-reel.com">
+          <img
+            class="img-center"
+            src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
+            width="125"
+            height="60"
+            alt="Reel Reel Logo"
+          />
+        </a>
+      </div>
+
+      <h3 class="heading">Here's new Tape Recorder Submitted Detail:</h3>
+
+      <table
+        style="
+          margin: 0 auto;
+          text-align: center;
+          padding: 20px 0px;
+          background: #ececec;
+        "
+      >
+        <thead style="border-bottom: 2px solid #dddddd">
+          <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th style="display: {{technician_shop_name_visibility}}">
+              Service technician
+            </th>
+            <th>Email</th>
+            <th>Links</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ recorder_brand }}</td>
+            <td>{{ recorder_model }}</td>
+            <td style="display: {{technician_shop_name_visibility}}">
+              {{ technician_shop_name }}
+            </td>
+            <td>{{ user_email }}</td>
+            <td>
+              <a href="{{ collection_url }}">{{ display_name }} Collection</a> |
+              <a href="{{ post_url }}" target="_blank"
+                >View {{ post_title }} Tape Recorder</a
+              >
+              |
+              <a href="{{ post_edit_url }}" target="_blank"
+                >Edit {{ post_title }} Tape Recorder</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Yours sincerely,</p>
+      <p>{{admin}}</p>
+
+      <div class="footer">
+        <p>© 2025 Reel-to-Reel – All rights reserved.</p>
+        <p>
+          <a
+            href="https://reel-to-reel.com/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Privacy Policy</a
+          >
+          |
+          <a
+            href="https://reel-to-reel.com/terms-of-service"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Terms of Service</a
+          >
+        </p>
+      </div>
     </div>
-
-    <h3 class="heading">Here's new Tape Recorder Submitted Detail:</h3>
-
-    <table style="margin: 0 auto; text-align: center; padding:20px 0px; background: #ececec;">
-      <thead style="border-bottom: 2px solid #dddddd;">
-        <tr>
-          <th>Brand</th>
-          <th>Model</th>
-          <th style="display: {{TECHNICIAN_SHOP_NAME_VISIBILITY}}">Service technician</th>
-          <th>Email</th>
-          <th>Links</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ RECORDER_BRAND }}</td>
-          <td>{{ RECORDER_MODEL }}</td>
-          <td style="display: {{TECHNICIAN_SHOP_NAME_VISIBILITY}}">{{ TECHNICIAN_SHOP_NAME }}</td>
-          <td>{{ USER_EMAIL }}</td>
-          <td>
-            <a href="{{ COLLECTION_URL }}">{{ DISPLAY_NAME }} Collection</a> |
-            <a href="{{ POST_URL }}" target="_blank">View {{ POST_TITLE }} Tape Recorder</a> |
-            <a href="{{ POST_EDIT_URL }}" target="_blank">Edit {{ POST_TITLE }} Tape Recorder</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</body>
+  </body>
 </html>

@@ -4,43 +4,70 @@
   <meta charset="UTF-8">
   <style>
     .email-body {
-      margin: 5px 25px 10px 25px;
-      padding: 1% 5% 1% 15%;
+      margin: 10px auto;
+      padding: 30px 40px;
+      max-width: 600px;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
     }
 
     .email-body .header {
-      margin: 0 auto;
       text-align: center;
-      display: block;
-      padding: 20px 0px;
-      background: #ececec;
-      height: 100px;
+      padding: 20px 0;
+      background-color: #ececec;
     }
 
     .email-body .header a {
-      padding: 20px 0px;
+      display: inline-block;
     }
 
     .img-center {
+      display: block;
       margin: 0 auto;
+    }
+
+    .email-body p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
   <div class="email-body">
+
     <div class="header">
-      <a href="{{site_url}}">
-        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo">
+      <a href="https://reel-reel.com">
+        <img class="img-center" 
+             src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png" 
+             width="125" 
+             height="60" 
+             alt="Reel Reel Logo">
       </a>
     </div>
+
     <p>Hi {{seller_name}},</p>
+
     <p>
-      {{buyer_name}} has won the bidding for the product <strong>{{product_title}} {{product_type}}</strong> and the system allows 72 
-      hours to complete the sale. Once you have been paid, you should mark the <strong>{{product_title}} {{product_type}}</strong> 
-      as sold.<br />
-      
-      {{buyer_name}} is located in {{city}}, {{country}} and you should communicate with the buyer or send an invoice.
+      <strong>{{buyer_name}}</strong> has won the bidding for the product 
+      <strong>{{product_title}} {{product_type}}</strong>.<br><br>
+      The system allows 72 hours to complete the sale. Once you have been paid, please mark the 
+      <strong>{{product_title}} {{product_type}}</strong> as sold.<br><br>
+      <strong>{{buyer_name}}</strong> is located in <strong>{{city}}, {{country}}</strong>. 
+      You should now communicate with the buyer or send an invoice.
     </p>
+
+    <p>Yours sincerely,</p>
+    <p>{{admin}}</p>
+
+    <div class="footer">
+      <p>© 2025 Reel-to-Reel – All rights reserved.</p>
+      <p>
+        <a href="https://reel-to-reel.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
+        <a href="https://reel-to-reel.com/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+      </p>
+    </div>
   </div>
 </body>
 </html>

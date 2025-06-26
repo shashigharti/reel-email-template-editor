@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <style>
     .email-body {
       margin: 15px auto;
       padding: 30px;
+      max-width: 600px;
+      font-family: Arial, sans-serif;
     }
 
     .email-body table {
-      font-family: arial, sans-serif;
       border-collapse: collapse;
       width: 100%;
     }
@@ -22,38 +24,50 @@
     }
 
     .email-body .header {
-      margin: 0 auto;
       text-align: center;
-      display: block;
-      padding: 20px 0px;
       background: #ececec;
-      height: 100px;
+      padding: 20px 0;
     }
 
     .email-body .header a {
-      padding: 20px 0px;
+      display: inline-block;
     }
 
-    .email-body header .img-center {
-      margin: 0 auto;
+    .email-body p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .email-body a {
+      color: #ac4c1c;
+      text-decoration: underline;
+      font-weight: bold;
     }
   </style>
 </head>
+
 <body>
   <div class="email-body">
+
     <div class="header">
-      <a href="{{site_url}}">
-        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo">
+      <a href="https://reel-reel.com">
+        <img class="img-center" src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
+          width="125" height="60" alt="Reel Reel Logo">
       </a>
     </div>
+
     <p>
-      Congratulations! You are the winner of the bidding of the product <strong>{{product_title}}</strong><br />
-      You should be receiving communication from the seller <strong>{{seller_name}}</strong> who is located in 
-      <strong>{{city}}, {{country}}</strong> shortly. Alternately you can 
-      <a href='{{invoice_request_url}}' target='_blank'>Request an Invoice</a><br />
-      The <strong>{{product_title}} {{product_type}}</strong> is now listed as <em>Pending</em> on the website, so nobody else can buy it.
-      You have 72 hours to complete the transaction or it will be posted back for sale.
+      Congratulations! You are the winner of the bidding for the product <strong>{{product_title}}</strong>.<br><br>
+      You should be receiving communication from the seller <strong>{{seller_name}}</strong>, located in
+      <strong>{{city}}, {{country}}</strong>, shortly. Alternatively, you can
+      <a href="{{invoice_request_url}}" target="_blank">request an invoice</a>.<br><br>
+      The <strong>{{product_title}} {{product_type}}</strong> is now listed as <em>Pending</em> on the website, so
+      nobody else can buy it.<br><br>
+      You have 72 hours to complete the transaction, or it will be posted back for sale.
     </p>
+
     <table>
       <thead style="border-bottom: 2px solid #dddddd;">
         <tr>
@@ -68,6 +82,19 @@
         </tr>
       </tbody>
     </table>
+
+    <p>Yours sincerely,</p>
+    <p>{{admin}}</p>
+
+    <div class="footer">
+      <p>© 2025 Reel-to-Reel – All rights reserved.</p>
+      <p>
+        <a href="https://reel-to-reel.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
+        <a href="https://reel-to-reel.com/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of
+          Service</a>
+      </p>
+    </div>
   </div>
 </body>
+
 </html>

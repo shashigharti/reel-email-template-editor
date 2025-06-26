@@ -1,59 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <style>
-    .email-body {
-      margin: 5px 25px 10px 25px;
-      border: 2px solid #ad4700;
-      background-color: #ccc;
-      padding: 1% 5% 1% 15%;
-      font-family: Arial, sans-serif;
-      color: #333;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      .email-body {
+        margin: 5px 25px 10px 25px;
+        border: 2px solid #ad4700;
+        background-color: #ccc;
+        padding: 1% 5% 1% 15%;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
 
-    .header {
-      margin: 0 auto;
-      text-align: center;
-      padding: 20px 0;
-      background: #ececec;
-    }
+      .header {
+        margin: 0 auto;
+        text-align: center;
+        padding: 20px 0;
+        background: #ececec;
+      }
 
-    .img-center {
-      display: block;
-      margin: 0 auto;
-    }
+      .img-center {
+        display: block;
+        margin: 0 auto;
+      }
 
-    p {
-      font-size: 15px;
-      line-height: 1.4;
-    }
+      p {
+        font-size: 15px;
+        line-height: 1.4;
+      }
 
-    a {
-      color: #ad4700;
-      text-decoration: none;
-    }
+      a {
+        color: #ad4700;
+        text-decoration: none;
+      }
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-body">
+      <div class="header">
+        <a href="https://reel-reel.com">
+          <img
+            class="img-center"
+            src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
+            width="125"
+            height="60"
+            alt="Reel Reel Logo"
+          />
+        </a>
+      </div>
+      <p>Hi {{ user_name }},</p>
+      <p>
+        A {{ product_name }} &nbsp; has just been posted for sale on
+        Reel-Reel.com
+      </p>
 
-  <div class="email-body">
-    <div class="header">
-      <a href="{{ site_url }}"><img class="img-center" src="{{ logo_url }}" width="125" height="60" alt="Reel Reel Logo"></a>
+      <p>You have this in your saved searches or favorites.</p>
+      <p><a href="{{ post_url }}">{{ product_name }}</a></p>
+
+      <p>Price : {{ currency }} {{ selling_price }}</p>
+      <p>Time left before close : {{ time_left_value }}</p>
+
+      <p>Yours sincerely,</p>
+      <p>{{admin}}</p>
+
+      <div class="footer">
+        <p>© 2025 Reel-to-Reel – All rights reserved.</p>
+        <p>
+          <a
+            href="https://reel-to-reel.com/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Privacy Policy</a
+          >
+          |
+          <a
+            href="https://reel-to-reel.com/terms-of-service"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Terms of Service</a
+          >
+        </p>
+      </div>
     </div>
-    <p> Hi {{ user_name }},</p>
-    <p> A {{ product_name }} &nbsp; has just been posted for sale on Reel-Reel.com</p>
-
-    <p> You have this in your saved searches or favorites.</p>
-    <p> <a href="{{ post_url }}">{{ product_name }}</a></p>
-
-    <p> Price : {{ currency }} {{ selling_price }}</p>
-    <p> Time left before close : {{ time_left_value }}</p>
-  </div>
-
-</body>
+  </body>
 </html>
