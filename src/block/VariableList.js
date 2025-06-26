@@ -7,9 +7,7 @@ export default function VariableList({ onInsert }) {
 
   useEffect(() => {
     fetchVariables()
-      .then((data) => {
-        setVariables(data);
-      })
+      .then(setVariables)
       .catch((error) => {
         console.error('Failed to fetch variables:', error);
       });
@@ -20,10 +18,9 @@ export default function VariableList({ onInsert }) {
       <h3 style={{ marginBottom: '10px' }}>Insert Variables</h3>
       <div
         style={{
-          maxHeight: '220px', 
+          maxHeight: '220px',
           overflowY: 'auto',
           border: '1px solid #ccc',
-          padding: '10px',
           borderRadius: '4px',
           backgroundColor: '#fff',
         }}
@@ -32,14 +29,16 @@ export default function VariableList({ onInsert }) {
           <Button
             key={v.key}
             onClick={() => onInsert(v.key)}
+            title={v.description} 
             style={{
               textAlign: 'left',
               width: '100%',
               whiteSpace: 'normal',
-              marginBottom: '6px',
+              marginBottom: '0px',
+              paddingBottom: '0px',
             }}
           >
-            <strong>{`{{${v.key}}}`}</strong> – {v.description}
+            <strong>{`{{${v.key}}}`}</strong>
           </Button>
         ))}
       </div>
