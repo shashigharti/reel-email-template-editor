@@ -42,20 +42,23 @@
 <body>
   <div class="email-body">
     <div class="header">
-      <a href="{{SITE_URL}}">
-        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo" />
+      <a href="{{site_url}}">
+        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo" />
       </a>
     </div>
 
-    <p>Hi {{BSA_SELLER_NAME}},</p>
+    <p>Hi {{seller_name}},</p>
 
     <p>
-      {{BUYER_NAME}} has requested an invoice for the
-      <strong>{{TITLE}} {{POST_TYPE}}</strong>. Once you have been paid, you should mark the
-      <strong>{{TITLE}} {{POST_TYPE}}</strong> as sold.
+      {{buyer_name}} has requested an invoice for the <strong>{{product_title}} {{product_type}}</strong>. 
+      
+      Once you have been paid, you should mark the
+      <strong>{{product_title}} {{product_type}}</strong> as sold.
       <br />
-      {{BUYER_NAME}} is located in {{CITY}}, {{COUNTRY}}, and you should communicate with the buyer or
-      <a href="{{INVOICE_LINK}}" target="_blank" rel="noopener noreferrer">Send an Invoice</a>.
+
+      {{buyer_name}} is located in {{city}}, {{country}}, and you should communicate with the buyer or
+      
+      <a href="{{create_invoice_link}}" target="_blank" rel="noopener noreferrer">Send an Invoice</a>.
     </p>
   </div>
 </body>

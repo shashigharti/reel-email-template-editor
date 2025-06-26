@@ -61,16 +61,17 @@
 <body>
   <div class="email-body">
     <div class="header">
-      <a href="{{SITE_URL}}">
-        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      <a href="{{site_url}}">
+        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo">
       </a>
     </div>
 
     <p>Congratulations!<br />
-      You should be receiving communication from the seller <strong>{{SELLER_NAME}}</strong> who is located in 
-      <strong>{{CITY}}, {{COUNTRY}}</strong> shortly.
-      Alternately you can request an invoice.<br />
-      The <strong>{{PRODUCT_TITLE}} {{PRODUCT_TYPE}}</strong> is now listed as <em>Pending</em> on the website, so nobody else can buy it.
+
+      You should be receiving communication from the seller <strong>{{seller_name}}</strong> who is located in 
+      <strong>{{city}}, {{country}}</strong> shortly. Alternately you can request an invoice. <br />
+
+      The <strong>{{product_title}} {{product_type}}</strong> is now listed as <em>Pending</em> on the website, so nobody else can buy it.
       You have 72 hours to complete the transaction or it will be posted back for sale.
     </p>
 
@@ -84,11 +85,11 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{PRODUCT_TITLE}}</td>
-          <td>{{CURRENCY}} {{SELLING_PRICE}}</td>
+          <td>{{product_title}}</td>
+          <td>{{currency}} {{selling_price}}</td>
           <td>
             <button>
-              <a href="{{SITE_URL}}/request-invoice?invoice={{UNIQUE_KEY}}" target="_blank">Request Invoice</a>
+              <a href="{{request_invoice_link}}" target="_blank">Request Invoice</a>
             </button>
           </td>
         </tr>

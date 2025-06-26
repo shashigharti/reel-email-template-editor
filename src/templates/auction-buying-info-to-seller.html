@@ -29,14 +29,17 @@
 <body>
   <div class="email-body">
     <div class="header">
-      <a href="{{SITE_URL}}">
-        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      <a href="{{site_url}}">
+        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo">
       </a>
     </div>
-    <p>Hi {{BSA_SELLER_NAME}},</p>
+    <p>Hi {{seller_name}},</p>
     <p>
-      {{BUYER_NAME}} has won the bidding for the product <strong>{{PRODUCT_TITLE}} {{PRODUCT_TYPE}}</strong> and the system allows 72 hours to complete the sale. Once you have been paid, you should mark the <strong>{{PRODUCT_TITLE}} {{PRODUCT_TYPE}}</strong> as sold.<br />
-      {{BUYER_NAME}} is located in {{CITY}}, {{COUNTRY}} and you should communicate with the buyer or send an invoice.
+      {{buyer_name}} has won the bidding for the product <strong>{{product_title}} {{product_type}}</strong> and the system allows 72 
+      hours to complete the sale. Once you have been paid, you should mark the <strong>{{product_title}} {{product_type}}</strong> 
+      as sold.<br />
+      
+      {{buyer_name}} is located in {{city}}, {{country}} and you should communicate with the buyer or send an invoice.
     </p>
   </div>
 </body>

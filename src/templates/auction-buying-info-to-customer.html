@@ -42,16 +42,16 @@
 <body>
   <div class="email-body">
     <div class="header">
-      <a href="{{SITE_URL}}">
-        <img class="img-center" src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo">
+      <a href="{{site_url}}">
+        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo">
       </a>
     </div>
     <p>
-      Congratulations! You are the winner of the bidding of the product <strong>{{PRODUCT_TITLE}}</strong><br />
-      You should be receiving communication from the seller <strong>{{SELLER_NAME}}</strong> who is located in 
-      <strong>{{CITY}}, {{COUNTRY}}</strong> shortly. Alternately you can 
-      <a href='{{SITE_URL}}/request-invoice/?invoice={{UNIQUE_KEY}}' target='_blank'>Request an Invoice</a><br />
-      The <strong>{{PRODUCT_TITLE}} {{PRODUCT_TYPE}}</strong> is now listed as <em>Pending</em> on the website, so nobody else can buy it.
+      Congratulations! You are the winner of the bidding of the product <strong>{{product_title}}</strong><br />
+      You should be receiving communication from the seller <strong>{{seller_name}}</strong> who is located in 
+      <strong>{{city}}, {{country}}</strong> shortly. Alternately you can 
+      <a href='{{invoice_request_url}}' target='_blank'>Request an Invoice</a><br />
+      The <strong>{{product_title}} {{product_type}}</strong> is now listed as <em>Pending</em> on the website, so nobody else can buy it.
       You have 72 hours to complete the transaction or it will be posted back for sale.
     </p>
     <table>
@@ -63,8 +63,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{PRODUCT_TITLE}}</td>
-          <td>{{CURRENCY}} {{BID_AMOUNT}}</td>
+          <td>{{product_title}}</td>
+          <td>{{currency}} {{bid_amount}}</td>
         </tr>
       </tbody>
     </table>

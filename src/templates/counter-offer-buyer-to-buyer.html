@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8" />
   <style>
@@ -9,22 +9,26 @@
       background-color: #ccc;
       padding: 1% 5% 1% 15%;
       font-family: Arial, sans-serif;
+      max-width: 600px;
     }
-
     .email-body .header {
       margin: 0 auto;
       text-align: center;
-      padding: 20px 0px;
+      padding: 20px 0;
       background: #ececec;
     }
-
-    .img-center {
-      display: block;
-      margin: 0 auto;
+    .email-body .header a {
+      display: inline-block;
     }
-
+    .email-body p {
+      font-size: 15px;
+      font-weight: normal;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
     a {
-      color: #ad4700;
+      color: #ac4c1c;
+      text-decoration: underline;
       font-weight: bold;
     }
   </style>
@@ -33,17 +37,15 @@
   <div class="email-body">
     <div class="header">
       <a href="{{site_url}}">
-        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo">
+        <img src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo" />
       </a>
     </div>
     <p>
-      Hi,<br />
-      R-R member <strong>{{seller_name}}</strong> has made an offer of <strong>{{currency}} {{offer_price}}</strong> on 
-      <strong>{{product_name}}</strong>.<br />
+      Hi, R-R member,
+      
+      You have {{remaining_counter}} counter offer left for this product sale';
 
-      This offer is valid for 24 hours and will then expire.<br />
-      Accept Offer or Counter Offer:
-      <a href="{{offer_link}}">Send</a>
+      {{admin}}
     </p>
   </div>
 </body>

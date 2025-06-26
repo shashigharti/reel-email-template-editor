@@ -43,14 +43,16 @@
 
   <div class="email-body">
     <div class="header">
-      <a href="{{ SITE_URL }}"><img class="img-center" src="{{ LOGO_URL }}" width="125" height="60" alt="Reel Reel Logo"></a>
+      <a href="{{ site_url }}"><img class="img-center" src="{{ logo_url }}" width="125" height="60" alt="Reel Reel Logo"></a>
     </div>
-    <p> Hi {{ DISPLAY_NAME }},</p>
-    <p> A {{ TITLE }} &nbsp; has just been posted for sale on Reel-Reel.com</p>
+    <p> Hi {{ user_name }},</p>
+    <p> A {{ product_name }} &nbsp; has just been posted for sale on Reel-Reel.com</p>
+
     <p> You have this in your saved searches or favorites.</p>
-    <p> <a href="{{ POST_URL }}">{{ TITLE }}</a></p>
-    <p> Price : {{ CURRENCY }} {{ SELLING_PRICE }}</p>
-    <p> Time left before close : {{ TIME_LEFT_VALUE }}</p>
+    <p> <a href="{{ post_url }}">{{ product_name }}</a></p>
+
+    <p> Price : {{ currency }} {{ selling_price }}</p>
+    <p> Time left before close : {{ time_left_value }}</p>
   </div>
 
 </body>

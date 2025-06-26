@@ -1,6 +1,7 @@
 <?php
 namespace ReelEmailTemplateEditor;
 
+use ReelEmailTemplateEditor\Includes\EmailDispatcher;
 use ReelEmailTemplateEditor\Rest\TemplateController;
 use ReelEmailTemplateEditor\Rest\HookController;
 use ReelEmailTemplateEditor\Includes\PlaceholderRegistry;
@@ -23,6 +24,8 @@ class Plugin {
         add_action('wp_loaded', [$this, 'register_placeholders']);
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
+    
+        $this->register_hooks();
     }
 
     public function register_rest_routes() {
@@ -78,8 +81,23 @@ class Plugin {
 
         PlaceholderRegistry::register('admin', function ($context) {
             return 'Reel-to-reel Admin';
-        });
-        
+        });        
+    }
+
+    public function register_hooks(){
+        $hooks = require __DIR__ . '/config/hooks.php';
+        foreach($hooks as $hook_data){
+            $hook_name = $hook_data['hook_name'];
+            add_filter($hook_name, function($result, $to, $context = []) use ($hook_name) {
+                if (empty($to)) {
+                    return new \WP_Error('no_to', 'No recipient provided.');
+                }
+                $dispatcher = new EmailDispatcher();
+
+                // Prepares the template based on context and sends email.
+                $dispatcher->dispatch($hook_name, $to, $context);
+            }, 10, 3);
+        }
     }
 
     public function admin_page_html() {

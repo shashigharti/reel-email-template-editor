@@ -2,8 +2,6 @@
 
 namespace ReelEmailTemplateEditor\Includes;
 
-use ReelEmailTemplateEditor\Includes\PlaceholderRegistry;
-
 class EmailService {
     
     public function get_template_content( int $template_id ): string {
@@ -12,10 +10,10 @@ class EmailService {
         return $post ? $post->post_content : '';
     }
 
-    public function send_email(string $to, string $subject, string $template_html, array $context = []) {
-        $body = PlaceholderRegistry::resolve_all($template_html, $context);
+    public function send_email(string $to, string $subject, string $body) {        
 
         $headers = [ 'Content-Type: text/html; charset=UTF-8' ];
+        $headers[] = 'From: Reel-Reel <no-reply@reel-reel.com>';
 
         $result = wp_mail($to, $subject, $body, $headers);
 

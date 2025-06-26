@@ -16,7 +16,7 @@ class Installer {
             id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
             hook_name varchar(191) NOT NULL UNIQUE,
             name varchar(191) NOT NULL,
-            description text NULL,
+            description text NULL,            
             created_at datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
             updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY (id)
@@ -30,11 +30,12 @@ class Installer {
             subject varchar(255) NOT NULL,
             content longtext NOT NULL,
             description text NULL,
+            user_type varchar(255) DEFAULT NULL,
             created_at datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
             updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY (id),
             KEY hook_id (hook_id)
-        ) $charset_collate;";        
+        ) $charset_collate;";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($hooks_sql);

@@ -55,14 +55,14 @@
 <body>
   <div class="email-body">
     <div class="header">
-      <a href="{{ SITE_URL }}">
-        <img class="img-center" src="{{ LOGO_URL }}" width="125" height="60" alt="Reel Reel Logo" />
+      <a href="{{site_url}}">
+        <img class="img-center" src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo" />
       </a>
     </div>
 
     <h3 class="heading">Invoice Order Item Lists</h3>
 
-    {{ORDERED_ITEMS}}
+    {{orders}}
 
     <hr />
 
@@ -77,21 +77,20 @@
         <tr>
           <td>
             <address>
-              {{ BUYER_DISPLAY_NAME }}<br />
-              {{ CITY }}, {{ POSTAL_CODE }}<br />
-              {{ COUNTRY }}<br />
+              {{buyer_name}}<br />
+              {{city}}, {{postal_code}}<br />
+              {{country}}<br />
             </address>
           </td>
           <td>
-            <p>Method: {{ PAYMENT_METHOD }}</p>
-            {{#DISPLAY_PAYPAL_ADDRESS}}
-            <p>{{ SELLER_NAME }} would like to be paid on this PayPal Address - {{ PAYPAL_ADDRESS }}</p>
-            {{/DISPLAY_PAYPAL_ADDRESS}}
-            <p>Items: <span class="item_count">{{ TOTAL_ITEMS }}</span></p>
-            <p>Total GBP: <span class="tamount">{{ TOTAL_AMOUNT }}</span></p>
-            <p>Shipping Amount: {{ SHIPPING_PRICE }}</p>
-            <p>Additional Message: {{ ADDITIONAL_INFO }}</p>
-            <p>Order Total GBP: <span class="tamount">{{ ORDER_TOTAL }}</span></p>
+            <p>Method: {{payment_method}}</p>
+            {{paypal_payment}}
+            
+            <p>Items: <span class="item_count">{{total_items}}</span></p>
+            <p>Total GBP: <span class="tamount">{{total_amount}}</span></p>
+            <p>Shipping Amount: {{shipping_address}}</p>
+            <p>Additional Message: {{additional_info}}</p>
+            <p>Order Total GBP: <span class="tamount">{{order_total}}</span></p>
           </td>
         </tr>
       </tbody>

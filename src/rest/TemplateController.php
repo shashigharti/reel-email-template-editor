@@ -3,7 +3,7 @@ namespace ReelEmailTemplateEditor\Rest;
 
 use ReelEmailTemplateEditor\Includes\TemplateRepository;
 use ReelEmailTemplateEditor\Includes\EmailService;
-
+use ReelEmailTemplateEditor\Includes\PlaceholderRegistry;
 use WP_REST_Controller;
 use WP_REST_Server;
 use WP_REST_Request;
@@ -83,6 +83,7 @@ class TemplateController extends WP_REST_Controller {
                 'title' => $template['title'],
                 'slug' => $template['slug'],
                 'subject' => $template['subject'] ?? null,
+                'user_type' => $template['user_type'] ?? null,
                 'created_at' => $template['created_at'] ?? null,
                 'updated_at' => $template['updated_at'] ?? null,
             ];
@@ -192,7 +193,7 @@ class TemplateController extends WP_REST_Controller {
             return new WP_REST_Response(['message' => 'Template not found'], 404);
         }
 
-        $content = $template['content'];
+        $template_content = $template['content'];
 
         $context = [];
         $user =  get_user_by( 'email', $to );        
@@ -202,8 +203,10 @@ class TemplateController extends WP_REST_Controller {
         }
 
         $context['user'] = $user; 
+        $content = PlaceholderRegistry::resolve_all($template_content, $context);
+
         $email_service = new EmailService();
-        $result = $email_service->send_email($to, $subject, $content, $context);
+        $result = $email_service->send_email($to, $subject, $content);
 
         if (is_wp_error($result)) {
             return new WP_REST_Response(['message' => $result->get_error_message()], 500);

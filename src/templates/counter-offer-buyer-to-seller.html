@@ -36,16 +36,18 @@
 <body>
   <div class="email-body">
     <div class="header">
-      <a href="{{SITE_URL}}">
-        <img src="{{LOGO_URL}}" width="125" height="60" alt="Reel Reel Logo" />
+      <a href="{{site_url}}">
+        <img src="{{logo_url}}" width="125" height="60" alt="Reel Reel Logo" />
       </a>
     </div>
     <p>
-      Hi, R-R member <strong>{{BUYER_NAME}}</strong> has made an offer of
-      <strong>{{CURRENCY}} {{OFFER_PRICE}}</strong> on <strong>{{PRODUCT_NAME}}</strong>.
+      Hi R-R member, 
+      
+      <strong>{{buyer_name}}</strong> has made an offer of    
+      <strong>{{currency}} {{offer_price}}</strong> on <strong>{{product_name}}</strong>.
+
       This offer is good for 24 hours and will then expire.
-      Accept Offer or Counter Offer.
-      <a href="{{OFFER_LINK}}">Send</a>
+      Accept Offer or Counter Offer. <a href="{{offer_link}}">Send</a>
     </p>
   </div>
 </body>

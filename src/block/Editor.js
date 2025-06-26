@@ -20,6 +20,7 @@ import Menu from './Menu';
 import CEditor from './CEditor.js';
 import TestEmailSender from './TestEmailSender.js';
 import HookList from './HookList.js';
+import UserTypeList from './UserTypeList.js';
 
 export default function Editor() {
   const [templates, setTemplates] = useState([]);
@@ -34,6 +35,7 @@ export default function Editor() {
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const editorInstanceRef = useRef(null);
+  const [selectedUserTypeID, setSelectedUserTypeID] = useState(null);
 
   const selectedTemplate = templates.find(t => t.id === selectedTemplateId);
 
@@ -72,6 +74,7 @@ export default function Editor() {
         let subject = template.subject;
         let hook_id = template.hook_id;
         let description = template.description;
+        let user_type = template.user_type;
 
         if (template.slug === 'default') {
           title = `${title}-${templates.length + 1}`;
@@ -81,6 +84,7 @@ export default function Editor() {
         setSlug(slug);
         setSubject(subject);        
         setDescription(description);
+        setSelectedUserTypeID(user_type);
 
         setHookID(hook_id);
       })
@@ -102,7 +106,9 @@ export default function Editor() {
       content,      
       description,
       hook_id: hookID,
+      user_type: selectedUserTypeID,
     };
+    console.log(payload);
 
     saveTemplate(selectedTemplate.id, payload)
       .then(() => {
@@ -243,20 +249,23 @@ export default function Editor() {
               </Button>
             </div>
           </div>
+          <div style={{ marginTop: '10px' }}>
+            <TestEmailSender template={selectedTemplate} setNotice={setNotice} />
+          </div>          
         </div>        
         <div style={{ width: '300px', borderLeft: '1px solid #ccc', paddingLeft: '15px' }}> 
           <VariableList
             onInsert={(variable) => {
               if (editorInstanceRef.current?.insertVariable) {
                 editorInstanceRef.current.insertVariable(`{{${variable}}}`);
+                editorInstanceRef.current.insertVariable(`{{${variable}}}`);
               }
             }}
           />
           <HookList onAttach={(hID)=>setHookID(hID)} selectedHookID={hookID} hooks={hooks}  />
+          <UserTypeList onSelect={(userTypeID)=>setSelectedUserTypeID(userTypeID)} selectedUserTypeID={selectedUserTypeID}/>
         </div>
       </div>
-
-      <TestEmailSender template={selectedTemplate} setNotice={setNotice} />
     </div>    
   );
 }
