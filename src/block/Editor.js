@@ -274,7 +274,6 @@ export default function Editor() {
             onInsert={(variable) => {
               if (editorInstanceRef.current?.insertVariable) {
                 editorInstanceRef.current.insertVariable(`{{${variable}}}`);
-                editorInstanceRef.current.insertVariable(`{{${variable}}}`);
               }
             }}
           />
