@@ -48,24 +48,40 @@ class Plugin {
         );
     }
 
-    public function enqueue_admin_scripts($hook) {
-        if ($hook !== $this->page_hook) {
+    public function enqueue_admin_scripts( $hook ) {
+        if ( $hook !== $this->page_hook ) {
             return;
         }
 
-        $buildFilePath = dirname(__DIR__) . '/build/admin.js';
+        $plugin_file = __DIR__ . '/../reel-email-template.php';
+        $plugin_dir  = plugin_dir_path( $plugin_file );
+        $plugin_url  = plugin_dir_url( $plugin_file );
 
-        $version = file_exists($buildFilePath) ? filemtime($buildFilePath) : false;
+        $js_file  = 'build/admin.js';
+        $css_file = 'build/admin.css';
+
+        $js_path  = $plugin_dir . $js_file;
+        $css_path = $plugin_dir . $css_file;
+
+        $version = file_exists( $js_path ) ? filemtime( $js_path ) : false;
 
         wp_enqueue_script(
             'reel-email-template-editor-admin',
-            plugins_url('build/admin.js', plugin_dir_path(__DIR__) . 'reel-email-template-editor.php'),
-            ['wp-element', 'wp-components', 'wp-api-fetch', 'wp-block-editor'],
+            $plugin_url . $js_file,
+            [ 'wp-element', 'wp-components', 'wp-api-fetch', 'wp-block-editor' ],
             $version,
             true
         );
 
-        wp_enqueue_style('wp-components');
+        if ( file_exists( $css_path ) ) {
+            $css_version = filemtime( $css_path );
+            wp_enqueue_style(
+                'reel-email-template-editor-admin-style',
+                $plugin_url . $css_file,
+                ['wp-components' ],
+                $css_version
+            );
+        }
     }
 
     public function register_placeholders() {

@@ -21,6 +21,7 @@ import CEditor from './CEditor.js';
 import TestEmailSender from './TestEmailSender.js';
 import HookList from './HookList.js';
 import UserTypeList from './UserTypeList.js';
+import HelpText from './components/HelpText.js';
 
 export default function Editor() {
   const [templates, setTemplates] = useState([]);
@@ -190,6 +191,9 @@ export default function Editor() {
                 value={title || ''}
                 onChange={onTitleChange}
               />
+              <HelpText
+              info="A good name for the email template for internal use only."
+              />
               <TextControl
                 label="Slug"
                 value={slug || ''}
@@ -206,14 +210,32 @@ export default function Editor() {
                   ...templates.map((t) => ({ label: t.title, value: t.id }))
                 ]}
                 onChange={(val) => setSelectedTemplateId(val)}
-              />
-              <TextControl
+              />            
+              <HelpText
+              info="Select an email template to edit."
+              /> 
+            </div>
+          </div>
+          <div>
+             <TextControl
                 label="Subject"
                 value={subject}
                 onChange={(val) => setSubject(val)}
               />
-            </div>
-          </div>          
+              <HelpText
+              info="Add subject for the email. You can also use the variable here ${user_name}."
+              />
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            <TextControl 
+              value={description} 
+              onChange={(val)=>setDescription(val)}
+              label="Description"
+            />
+            <HelpText
+              info="Add a short description for the email template. This information is for internal reference only and won't appear in the final email."
+            />
+          </div>   
           <Menu onImport={onImport} onAddNew={() => {setSelectedTemplateId('')}}/>
           <CEditor
             ref={editorInstanceRef}
@@ -222,14 +244,7 @@ export default function Editor() {
                 setContent(value);
               }
             }
-          />
-          <div style={{ marginTop: '10px' }}>
-            <TextControl 
-              value={description} 
-              onChange={(val)=>setDescription(val)}
-              label="Description"
-            />
-          </div>
+          />          
           <div style={{ marginTop: '10px' }}>
             <div style={{ display: 'flex', gap: '10px' }}>
               <Button variant="primary" onClick={onSave} disabled={isSaving}>
@@ -251,6 +266,7 @@ export default function Editor() {
           </div>
           <div style={{ marginTop: '10px' }}>
             <TestEmailSender template={selectedTemplate} setNotice={setNotice} />
+            <HelpText info="Send a test email using the currently selected template." />
           </div>          
         </div>        
         <div style={{ width: '300px', borderLeft: '1px solid #ccc', paddingLeft: '15px' }}> 

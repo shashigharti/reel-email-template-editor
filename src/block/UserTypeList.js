@@ -1,10 +1,10 @@
 import { useState } from '@wordpress/element';
 
 const DEFAULT_USER_TYPES = [
-  { id: 'subscriber', name: 'Subscriber' },
+  { id: 'admin', name: 'Admin' },
   { id: 'buyer', name: 'Buyer' },
   { id: 'seller', name: 'Seller' },
-  { id: 'admin', name: 'Admin' },
+  { id: 'subscriber', name: 'Subscriber' },  
   { id: 'user', name: 'User' },
 ];
 

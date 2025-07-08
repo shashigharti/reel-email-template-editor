@@ -1,6 +1,7 @@
 import { useState, useEffect } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import { fetchVariables } from '../utils/api';
+import HelpText from './components/HelpText.js';
 
 export default function VariableList({ onInsert }) {
   const [variables, setVariables] = useState([]);
@@ -16,6 +17,7 @@ export default function VariableList({ onInsert }) {
   return (
     <div style={{ marginTop: '30px' }}>
       <h3 style={{ marginBottom: '10px' }}>Insert Variables</h3>
+      <HelpText info="Click to insert placeholders in the email template. These will be replaced with real values when the email is sent." />
       <div
         style={{
           maxHeight: '220px',

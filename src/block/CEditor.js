@@ -45,26 +45,13 @@ const CEditor = forwardRef(({ initialContent = '', onChange }, ref) => {
   };
 
   return (
-    <div>
-      <div style={{ borderBottom: '1px solid #ccc', marginBottom: 10 }}>
+    <div className="ceditor">
+      <div className="ceditor__tabs">
         {['editor'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            style={{
-              padding: '10px 20px',
-              marginRight: '2px',
-              background: activeTab === tab ? '#fff' : '#f1f1f1',
-              color: '#000',
-              border: '1px solid #ccc',
-              borderBottom: activeTab === tab ? 'none' : '1px solid #ccc',
-              borderTopLeftRadius: '5px',
-              borderTopRightRadius: '5px',
-              cursor: 'pointer',
-              fontWeight: activeTab === tab ? 'bold' : 'normal',
-              position: 'relative',
-              top: activeTab === tab ? '1px' : '0',
-            }}
+            className={`ceditor__tab ${activeTab === tab ? 'ceditor__tab--active' : ''}`}
           >
             Editor
           </button>
@@ -82,27 +69,18 @@ const CEditor = forwardRef(({ initialContent = '', onChange }, ref) => {
               'heading', '|',
               'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|',
               'insertTable', 'imageUpload', 'undo', 'redo', '|',
-              'sourceEditing'
+              'sourceEditing',
             ],
             table: {
-              contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-            }
+              contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+            },
           }}
         />
       ) : (
         <textarea
+          className="ceditor__textarea"
           value={content}
           onChange={handleHtmlChange}
-          style={{
-            width: '100%',
-            minHeight: '300px',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
-            fontFamily: 'monospace',
-            fontSize: '14px',
-            padding: '10px',
-            marginBottom: '20px',
-          }}
         />
       )}
     </div>
