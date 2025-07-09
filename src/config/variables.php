@@ -2,34 +2,22 @@
 
 return [
     ['key' => 'admin', 'label' => 'Admin', 'description' => 'Name or identifier of the admin responsible.'],
-
-    // Additional info
     ['key' => 'additional_info', 'label' => 'Additional Info', 'description' => 'Extra information related to the order or shipment.'],
-
-    // Author
     ['key' => 'author_name', 'label' => 'Author Name', 'description' => 'Name of the author or content creator.'],
-
-    // Bid and offer
     ['key' => 'bid_amount', 'label' => 'Bid Amount', 'description' => 'Amount placed as a bid.'],
-    ['key' => 'counter_offer_link', 'label' => 'Counter Offer Link', 'description' => 'URL to view or respond to a counter offer.'],
     ['key' => 'comment', 'label' => 'Comment', 'description' => 'Additional comment or note related to the order.'],
+    ['key' => 'counter_offer_link', 'label' => 'Counter Offer Link', 'description' => 'URL to view or respond to a counter offer.'],
     ['key' => 'create_invoice_link', 'label' => 'Create Invoice Link', 'description' => 'URL to create an invoice.'],
     ['key' => 'create_invoice_url', 'label' => 'Create Invoice URL', 'description' => 'URL for invoice creation or management.'],
     ['key' => 'currency', 'label' => 'Currency', 'description' => 'Currency code used for prices.'],
-
-    // Buyer info
     ['key' => 'buyer_address', 'label' => 'Buyer Address', 'description' => 'Street address of the buyer.'],
     ['key' => 'buyer_city', 'label' => 'Buyer City', 'description' => 'City where the buyer is located.'],
     ['key' => 'buyer_country', 'label' => 'Buyer Country', 'description' => 'Country of the buyer.'],
     ['key' => 'buyer_name', 'label' => 'Buyer Name', 'description' => 'Full name of the buyer.'],
     ['key' => 'buyer_postal_code', 'label' => 'Buyer Postal Code', 'description' => 'Postal or ZIP code of the buyer’s address.'],
-
-    // Business years
     ['key' => 'business_end', 'label' => 'Business End Year', 'description' => 'The year the business ended or "Present" if ongoing.'],
     ['key' => 'business_start', 'label' => 'Business Start Year', 'description' => 'The year the business started operations.'],
-
-    // Links
-    ['key' => 'link', 'label' => 'Link', 'description' => 'General link related to the item or offer.'],
+    ['key' => 'invoice_request_url', 'label' => 'Invoice Request URL', 'description' => 'URL to request an invoice.'],
     ['key' => 'message', 'label' => 'Message', 'description' => 'Message content sent by the client or user.'],
     ['key' => 'offer_link', 'label' => 'Offer Link', 'description' => 'URL to view or manage the offer.'],
     ['key' => 'offer_price', 'label' => 'Offer Price', 'description' => 'Price offered by a buyer or seller.'],
@@ -40,13 +28,10 @@ return [
     ['key' => 'payment_method', 'label' => 'Payment Method', 'description' => 'Method used for payment.'],
     ['key' => 'paypal_payment_link', 'label' => 'Paypal Payment Link', 'description' => 'URL link for PayPal payment processing.'],
     ['key' => 'post_url', 'label' => 'Post URL', 'description' => 'URL to the related post or product page.'],
+    ['key' => 'product_link', 'label' => 'Product Link', 'description' => 'URL related to the product or offer.'],
     ['key' => 'product_title', 'label' => 'Product Title', 'description' => 'Title of the product.'],
     ['key' => 'product_type', 'label' => 'Product Type', 'description' => 'Category or type of the product.'],
-
-    // Manufacturer info
     ['key' => 'manufacturer_country', 'label' => 'Manufacturer Country', 'description' => 'Country where the product was manufactured.'],
-
-    // Remaining and time info
     ['key' => 'remaining_counter', 'label' => 'Remaining Counter', 'description' => 'Count of remaining items or actions allowed.'],
     ['key' => 'reply_url', 'label' => 'Reply URL', 'description' => 'URL to reply to messages or offers.'],
     ['key' => 'request_invoice_link', 'label' => 'Request Invoice Link', 'description' => 'URL to request an invoice.'],
@@ -59,8 +44,6 @@ return [
     ['key' => 'shipping_price', 'label' => 'Shipping Price', 'description' => 'Cost of shipping.'],
     ['key' => 'tape_recorder_producer', 'label' => 'Tape Recorder Producer', 'description' => 'Name of the company or individual who produced the tape recorder.'],
     ['key' => 'time_left_value', 'label' => 'Time Left Value', 'description' => 'The time remaining for an event, offer, or listing (e.g., "2 days 3 hours").'],
-
-    // Seller info
     ['key' => 'seller_address', 'label' => 'Seller Address', 'description' => 'Street address of the seller.'],
     ['key' => 'seller_city', 'label' => 'Seller City', 'description' => 'City where the seller is located.'],
     ['key' => 'seller_country', 'label' => 'Seller Country', 'description' => 'Country of the seller.'],
