@@ -265,7 +265,7 @@ export default function Editor() {
             </div>
           </div>
           <div style={{ marginTop: '10px' }}>
-            <TestEmailSender template={selectedTemplate} setNotice={setNotice} />
+            <TestEmailSender template={selectedTemplate} setNotice={setNotice} templateSlug={slug} />
             <HelpText info="Send a test email using the currently selected template." />
           </div>          
         </div>        

@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 
-export default function TestEmailSender({ setNotice }) {
+export default function TestEmailSender({ setNotice, templateSlug = 'default' }) {
   const [recipient, setRecipient] = useState('');
 
   const isValidEmail = (email) =>
@@ -18,7 +18,8 @@ export default function TestEmailSender({ setNotice }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          recipient_email: recipient
+          recipient_email: recipient,
+          template_slug: templateSlug,
         }),
       });
 

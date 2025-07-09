@@ -182,13 +182,14 @@ class TemplateController extends WP_REST_Controller {
 
     public function send_test_email(WP_REST_Request $request) {
         $to        = $request->get_param('recipient_email');
+        $slug        = $request->get_param('template_slug');
         $subject        = "Test Email from Reel-to-Reel";
 
         if (empty($to) || empty($subject)) {
             return new WP_REST_Response(['message' => 'Missing required parameters'], 400);
         }
 
-        $template = TemplateRepository::get_template_by_slug('default');
+        $template = TemplateRepository::get_template_by_slug($slug);
         if (!$template) {
             return new WP_REST_Response(['message' => 'Template not found'], 404);
         }
@@ -201,8 +202,11 @@ class TemplateController extends WP_REST_Controller {
         if (!$user) {
             return new WP_REST_Response(['message' => 'User not found'], 404);
         }
+        
+        $data = plugin_dir_path(__FILE__) . '../config/dummy.php';
+        $data['user'] = $user;
+        $context['data'] = $data; 
 
-        $context['user'] = $user; 
         $content = PlaceholderRegistry::resolve_all($template_content, $context);
 
         $email_service = new EmailService();
