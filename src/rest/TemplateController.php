@@ -203,9 +203,8 @@ class TemplateController extends WP_REST_Controller {
             return new WP_REST_Response(['message' => 'User not found'], 404);
         }
         
-        $dummy_data = plugin_dir_path(__FILE__) . '../config/dummy.php';
-        $context = include $dummy_data;
         $context['user'] = $user;
+        error_log('Array content: ' . print_r($context, true));
 
         $content = PlaceholderRegistry::resolve_all($template_content, $context);
 

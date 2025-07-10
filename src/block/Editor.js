@@ -266,7 +266,8 @@ export default function Editor() {
           </div>
           <div style={{ marginTop: '10px' }}>
             <TestEmailSender template={selectedTemplate} setNotice={setNotice} templateSlug={slug} />
-            <HelpText info="Send a test email using the currently selected template." />
+            <HelpText info="Send a test email using the currently selected template. Please note that the data used 
+            is dummy data for testing purposes, not real placeholder values." />
           </div>          
         </div>        
         <div style={{ width: '300px', borderLeft: '1px solid #ccc', paddingLeft: '15px' }}> 

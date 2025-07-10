@@ -85,6 +85,10 @@ class Plugin {
     }
 
     public function register_placeholders() {
+        // Register dummy variables.
+        add_action('reel_email_placeholders_register', [$this, 'register_dummy_placeholders']);
+
+
         do_action('reel_email_placeholders_register');
 
         PlaceholderRegistry::register('firstname', function ($context) {
@@ -98,6 +102,16 @@ class Plugin {
         PlaceholderRegistry::register('admin', function ($context) {
             return 'Reel-to-reel Admin';
         });        
+    }
+
+    public function register_dummy_placeholders() {
+        $placeholders = require plugin_dir_path(__FILE__) . 'config/dummy.php';
+
+        foreach ($placeholders as $key => $value) {
+            PlaceholderRegistry::register($key, function () use ($value) {
+                return $value;
+            });
+        }
     }
 
     public function register_hooks(){
