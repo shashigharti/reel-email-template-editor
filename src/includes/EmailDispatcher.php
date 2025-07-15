@@ -25,7 +25,7 @@ class EmailDispatcher {
             return new \WP_Error('hook_not_found', "No hook registered with name '$hook_name'.");        
         }
 
-        $templates = $this->wpdb->get_row(
+        $templates = $this->wpdb->get_results(
             $this->wpdb->prepare(
                 "SELECT * FROM {$this->templates_table} 
                  WHERE hook_id = %d",
@@ -39,17 +39,29 @@ class EmailDispatcher {
         }
 
         $email_service = new EmailService();
+
+        if (empty($templates)) {
+            error_log("No templates to process for hook '$hook_name'.");
+            return;
+        }
+
         foreach ($templates as $template) {
-            $subject = PlaceholderRegistry::resolve_all($template->subject, $context);
-            $body    = PlaceholderRegistry::resolve_all($template->content, $context);
-            $to = $context['data'][$template->user_type];
+            $subject = PlaceholderRegistry::resolve_all($template->subject ?? '', $context);
+            $body    = PlaceholderRegistry::resolve_all($template->content ?? '', $context);
+            $to      = $context['data'][$template->user_type] ?? '';
+
+            if (empty($to)) {
+                error_log("Email not sent: 'to' address is empty for user_type '{$template->user_type}'.");
+                continue;
+            }
 
             $result = $email_service->send_email($to, $subject, $body);
 
             if (is_wp_error($result)) {
-                error_log("Email dispatch error for hook '$hook_name': " . $result->get_error_message());
+                error_log("Email dispatch error for hook '$hook_name' and user_type '{$template->user_type}': " . $result->get_error_message());
             }
         }
+
 
         return true; 
     }

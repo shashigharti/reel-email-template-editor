@@ -2,11 +2,8 @@ import { useState } from "@wordpress/element";
 import HelpText from "./components/HelpText.js";
 
 const DEFAULT_USER_TYPES = [
-  { id: "admin", name: "Admin" },
   { id: "buyer", name: "Buyer" },
-  { id: "seller", name: "Seller" },
-  { id: "subscriber", name: "Subscriber" },
-  { id: "user", name: "User" },
+  { id: "seller", name: "Seller" }
 ];
 
 export default function UserTypeList({ onSelect, selectedUserTypeID }) {

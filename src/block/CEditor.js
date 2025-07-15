@@ -65,15 +65,22 @@ const CEditor = forwardRef(({ initialContent = '', onChange }, ref) => {
           onReady={handleEditorReady}
           onChange={handleEditorChange}
           config={{
-            toolbar: [
-              'heading', '|',
-              'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|',
-              'insertTable', 'imageUpload', 'undo', 'redo', '|',
-              'sourceEditing',
-            ],
-            table: {
-              contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+            toolbar: {
+              items: [
+                'undo', 'redo', '|',
+                'heading', '|',
+                'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor', '|',
+                'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code', '|',
+                'link', 'uploadImage', 'blockQuote', 'codeBlock', '|',
+                'alignment', '|',
+                'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent', '|',
+                'sourceEditing'
+              ],
+              shouldNotGroupWhenFull: true
             },
+            table: {
+              contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+            }
           }}
         />
       ) : (

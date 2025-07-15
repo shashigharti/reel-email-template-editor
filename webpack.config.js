@@ -10,6 +10,11 @@ module.exports = {
   },
   module: {
     rules: [
+       {
+        test: /\.svg$/,
+        type: 'asset/source',              
+        include: /@ckeditor\/ckeditor5-[^/]+\/theme\/icons/, 
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
