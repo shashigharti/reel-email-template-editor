@@ -1,117 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style>
-    .email-body {
-      margin: 15px auto;
-      padding: 30px;
-    }
-
-    .email-body table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    .email-body td,
-    .email-body th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-
-    .email-body .header {
-      margin: 0 auto;
-      text-align: center;
-      display: block;
-      padding: 20px 0px;
-      background: #ececec;
-      height: 100px;
-    }
-
-    .email-body .header a {
-      padding: 20px 0px;
-    }
-
-    .email-body .img-center {
-      margin: 0 auto;
-    }
-
-    .email-body button {
-      background-color: #0073aa;
-      border: none;
-      padding: 10px 16px;
-      color: white;
-      cursor: pointer;
-      font-size: 14px;
-      border-radius: 4px;
-    }
-
-    .email-body button a {
-      color: white;
-      text-decoration: none;
-    }
-
-    .email-body button a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="email-body">
-    <div class="header">
-      <a href="https://reel-reel.com">
-        <img
-          class="img-center"
-          src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
-          width="125"
-          height="60"
-          alt="Reel Reel Logo"
-        />
-      </a>
-    </div>
-
-    <p>Congratulations!<br />
-
-      You should be receiving communication from the seller <strong>{{seller_name}}</strong> who is located in 
-      <strong>{{city}}, {{country}}</strong> shortly. Alternately you can request an invoice. <br />
-
-      The <strong>{{product_title}} {{product_type}}</strong> is now listed as <em>Pending</em> on the website, so nobody else can buy it.
-      You have 72 hours to complete the transaction or it will be posted back for sale.
-    </p>
-
-    <table>
-      <thead style="border-bottom: 2px solid #dddddd;">
-        <tr>
-          <th>Summary</th>
-          <th>Price</th>
-          <th>Request An Invoice</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{product_title}}</td>
-          <td>{{currency}} {{selling_price}}</td>
-          <td>
-            <button>
-              <a href="{{request_invoice_link}}" target="_blank">Request Invoice</a>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>Yours sincerely,</p>
-    <p>{{admin}}</p>
-
-    <div class="footer">
-      <p>© 2025 Reel-to-Reel – All rights reserved.</p>
-      <p>
-        <a href="https://reel-to-reel.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
-        <a href="https://reel-to-reel.com/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>
-      </p>
-    </div>
+<div class="email-body">
+  <div class="header">
+    <a href="https://reel-reel.com">
+      <img
+        class="img-center"
+        src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
+        width="125"
+        height="60"
+        alt="Reel Reel Logo"
+      />
+    </a>
   </div>
-</body>
-</html>
+
+  <p>
+    Congratulations!<br />
+
+    You should be receiving communication from the seller
+    <strong>{{seller_name}}</strong> who is located in
+    <strong>{{seller_city}}, {{seller_country}}</strong> shortly. Alternately you can request
+    an invoice. <br />
+
+    The <strong>{{product_title}} {{product_type}}</strong> is now listed as
+    <em>Pending</em> on the website, so nobody else can buy it. You have 72
+    hours to complete the transaction or it will be posted back for sale.
+  </p>
+
+  <table>
+    <thead style="border-bottom: 2px solid #dddddd">
+      <tr>
+        <th>Summary</th>
+        <th>Price</th>
+        <th>Request An Invoice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{product_title}}</td>
+        <td>{{currency}} {{selling_price}}</td>
+        <td>
+          <button>
+            <a href="{{request_invoice_url}}" target="_blank"
+              >Request Invoice</a
+            >
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Yours sincerely,</p>
+  <p>{{admin}}</p>
+
+  <div class="footer">
+    <p>© 2025 Reel-to-Reel – All rights reserved.</p>
+    <p>
+      <a
+        href="https://reel-to-reel.com/privacy-policy"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Privacy Policy</a
+      >
+      |
+      <a
+        href="https://reel-to-reel.com/terms-of-service"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Terms of Service</a
+      >
+    </p>
+  </div>
+</div>

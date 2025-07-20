@@ -192,7 +192,7 @@ export default function Editor() {
                 onChange={onTitleChange}
               />
               <HelpText
-              info="A good name for the email template for internal use only."
+              info="Name for the email template for internal use only."
               />
               <TextControl
                 label="Slug"
@@ -223,7 +223,7 @@ export default function Editor() {
                 onChange={(val) => setSubject(val)}
               />
               <HelpText
-              info="Add subject for the email. You can also use the variable here ${user_name}."
+              info="Add subject for the email. You can also use the variable here {{user_name}}."
               />
           </div>
           <div style={{ marginTop: '10px' }}>

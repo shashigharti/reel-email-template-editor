@@ -1,108 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      .email-body {
-        margin: 5px 25px 10px 25px;
-        border: 2px solid #ad4700;
-        background-color: #ccc;
-        padding: 1% 5% 1% 15%;
-        font-family: Arial, sans-serif;
-        color: #333;
-      }
-      .header {
-        margin: 0 auto;
-        text-align: center;
-        padding: 20px 0px;
-        background: #ececec;
-      }
-      .img-center {
-        display: block;
-        margin: 0 auto;
-      }
-      table {
-        width: 100%;
-        text-align: left;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
-      thead {
-        border-bottom: 2px solid #dddddd;
-      }
-      th,
-      td {
-        padding: 8px 10px;
-      }
-      h2 {
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="email-body">
-      <div class="header">
-        <a href="https://reel-reel.com">
-          <img
-            class="img-center"
-            src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
-            width="125"
-            height="60"
-            alt="Reel Reel Logo"
-          />
-        </a>
-      </div>
+<div class="email-body">
+  <div class="header">
+    <a href="https://reel-reel.com">
+      <img
+        class="img-center"
+        src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
+        width="125"
+        height="60"
+        alt="Reel Reel Logo"
+      />
+    </a>
+  </div>
 
-      <h2>Invoice for {{title}}</h2>
+  <h2>Invoice for {{product_title}}</h2>
+  {{order_details}}
 
-      <p>
-        The {{title}} is now listed as Pending on the website, so nobody else
-        can buy it. You have 72 hours to complete the transaction or it will be
-        posted back for sale.
-      </p>
+  <hr />
+  {{shipping_details}}
 
-      <table>
-        <thead>
-          <tr>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Shipping Detail</th>
-            <th>Shipping Price</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{title}}</td>
-            <td>{{currency}} {{product_price}}</td>
-            <td>{{shipping_detail}}</td>
-            <td>{{currency}} {{shipping_price}}</td>
-            <td>{{currency}} {{total}}</td>
-          </tr>
-        </tbody>
-      </table>
+  <p>Yours sincerely,</p>
+  <p>{{admin}}</p>
 
-      <p>Yours sincerely,</p>
-      <p>{{admin}}</p>
-
-      <div class="footer">
-        <p>© 2025 Reel-to-Reel – All rights reserved.</p>
-        <p>
-          <a
-            href="https://reel-to-reel.com/privacy-policy"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Privacy Policy</a
-          >
-          |
-          <a
-            href="https://reel-to-reel.com/terms-of-service"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Terms of Service</a
-          >
-        </p>
-      </div>
-    </div>
-  </body>
-</html>
+  <div class="footer">
+    <p>© 2025 Reel-to-Reel – All rights reserved.</p>
+    <p>
+      <a
+        href="https://reel-to-reel.com/privacy-policy"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Privacy Policy</a
+      >
+      |
+      <a
+        href="https://reel-to-reel.com/terms-of-service"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Terms of Service</a
+      >
+    </p>
+  </div>
+</div>

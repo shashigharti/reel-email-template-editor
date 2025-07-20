@@ -3,7 +3,8 @@ import HelpText from "./components/HelpText.js";
 
 const DEFAULT_USER_TYPES = [
   { id: "buyer", name: "Buyer" },
-  { id: "seller", name: "Seller" }
+  { id: "seller", name: "Seller" },
+  { id: "member", name: "Member" }
 ];
 
 export default function UserTypeList({ onSelect, selectedUserTypeID }) {

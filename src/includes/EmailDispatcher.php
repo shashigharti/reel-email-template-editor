@@ -46,9 +46,9 @@ class EmailDispatcher {
         }
 
         foreach ($templates as $template) {
-            $subject = PlaceholderRegistry::resolve_all($template->subject ?? '', $context);
+            $subject = PlaceholderRegistry::resolve_all($template->subject ?? $context['data']['subject'], $context);
             $body    = PlaceholderRegistry::resolve_all($template->content ?? '', $context);
-            $to      = $context['data'][$template->user_type] ?? '';
+            $to      = $context['data'][$template->user_type] ?? $context['data']['to'];
 
             if (empty($to)) {
                 error_log("Email not sent: 'to' address is empty for user_type '{$template->user_type}'.");

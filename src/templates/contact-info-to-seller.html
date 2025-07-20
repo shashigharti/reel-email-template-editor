@@ -1,92 +1,41 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      .email-body {
-        margin: 15px auto;
-        padding: 30px;
-        font-family: Arial, sans-serif;
-      }
+<div class="email-body">
+  <div class="header">
+    <a href="https://reel-reel.com">
+      <img
+        class="img-center"
+        src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
+        width="125"
+        height="60"
+        alt="Reel Reel Logo"
+      />
+    </a>
+  </div>
 
-      .email-body table {
-        border-collapse: collapse;
-        width: 100%;
-      }
+  <p>From Reel-Reel.com Member (<strong>{{first_name}}</strong>)</p>
+  <p><strong>Message:</strong> {{message}}</p>
+  <p>{{message_link_url}}</p>
 
-      .email-body td,
-      .email-body th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
+  <a href="{{reply_url}}" class="reply-btn">Reply</a>
 
-      .email-body .header {
-        margin: 0 auto;
-        text-align: center;
-        display: block;
-        padding: 20px 0px;
-        background: #ececec;
-        height: 100px;
-      }
+  <p>Yours sincerely,</p>
+  <p>{{admin}}</p>
 
-      .email-body .header a {
-        padding: 20px 0px;
-      }
-
-      .email-body .reply-btn {
-        background-color: #ac4c1c;
-        padding: 10px;
-        font-size: 17px;
-        border-radius: 5px;
-        color: white !important;
-        margin-top: 5px !important;
-        display: inline-block;
-        text-decoration: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="email-body">
-      <div class="header">
-        <a href="https://reel-reel.com">
-          <img
-            class="img-center"
-            src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png"
-            width="125"
-            height="60"
-            alt="Reel Reel Logo"
-          />
-        </a>
-      </div>
-
-      <p>From Reel-Reel.com Member (<strong>{{sender_first_name}}</strong>)</p>
-      <p><strong>Message:</strong> {{message}}</p>
-      <p>{{link}}</p>
-
-      <a href="{{reply_url}}" class="reply-btn">Reply</a>
-
-      <p>Yours sincerely,</p>
-      <p>{{admin}}</p>
-
-      <div class="footer">
-        <p>© 2025 Reel-to-Reel – All rights reserved.</p>
-        <p>
-          <a
-            href="https://reel-to-reel.com/privacy-policy"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Privacy Policy</a
-          >
-          |
-          <a
-            href="https://reel-to-reel.com/terms-of-service"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Terms of Service</a
-          >
-        </p>
-      </div>
-    </div>
-  </body>
-</html>
+  <div class="footer">
+    <p>© 2025 Reel-to-Reel – All rights reserved.</p>
+    <p>
+      <a
+        href="https://reel-to-reel.com/privacy-policy"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Privacy Policy</a
+      >
+      |
+      <a
+        href="https://reel-to-reel.com/terms-of-service"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Terms of Service</a
+      >
+    </p>
+  </div>
+</div>

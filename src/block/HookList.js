@@ -12,7 +12,9 @@ export default function HookList({ onAttach, selectedHookID, hooks = [] }) {
     <div style={{ marginTop: "30px" }}>
       <h3 style={{ marginBottom: "12px", fontSize: "16px" }}>Select Action</h3>
       <HelpText
-        info="Select the event that triggers the email. For example, if the email is for announcing a winner, choose 'Auction winner announced'."
+        info={`These are the events that trigger the email to be sent. For example, 
+          if you want to use a template for the "Buy Item" event, select 
+          "Buy Item" action.`}
       />
       <div
         style={{
