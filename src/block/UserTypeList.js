@@ -12,7 +12,6 @@ export default function UserTypeList({ onSelect, selectedUserTypeID }) {
 
   const handleChange = (userTypeID) => {
     onSelect(userTypeID);
-    console.log("Selected", userTypeID);
   };
 
   return (

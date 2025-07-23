@@ -130,7 +130,7 @@ class TemplateRepository {
             'updated_at' => current_time('mysql'),
         ];
         
-        if (empty($id)) {
+        if ($id == 'default') {
             $data['created_at'] = current_time('mysql');
             $inserted = $wpdb->insert(
                 $table,

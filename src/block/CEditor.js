@@ -69,12 +69,9 @@ const CEditor = forwardRef(({ initialContent = '', onChange }, ref) => {
               items: [
                 'undo', 'redo', '|',
                 'heading', '|',
-                'fontFamily', 'fontSize', 'fontColor', 'fontBackgroundColor', '|',
-                'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code', '|',
-                'link', 'uploadImage', 'blockQuote', 'codeBlock', '|',
-                'alignment', '|',
-                'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent', '|',
-                'sourceEditing'
+                'bold', 'italic', '|',
+                'link', 'uploadImage', 'blockQuote', '|',
+                'bulletedList', 'numberedList', 'outdent', 'indent', '|',
               ],
               shouldNotGroupWhenFull: true
             },

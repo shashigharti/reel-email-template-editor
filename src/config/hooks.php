@@ -6,9 +6,14 @@ return [
         'description' => 'Seller wants to buy an item.',
     ],
     [
-        'hook_name'   => 'reel_bsa_cancel_order',
-        'name'        => 'Cancel Order',
-        'description' => 'When order is cancelled.',
+        'hook_name'   => 'reel_bsa_cancel_order_seller',
+        'name'        => 'Cancel Order By Seller',
+        'description' => 'When order is cancelled by seller.',
+    ],
+    [
+        'hook_name'   => 'reel_bsa_cancel_order_buyer',
+        'name'        => 'Cancel Order By Buyer',
+        'description' => 'When order is cancelled by buyer.',
     ],
     [
         'hook_name'   => 'reel_bsa_contact_seller',

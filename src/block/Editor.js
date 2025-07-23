@@ -96,7 +96,7 @@ export default function Editor() {
   }, [selectedTemplateId]);
   
   function onSave() {
-    if (!selectedTemplate) return;
+    const templateId = selectedTemplate?.id;
 
     setIsSaving(true);
 
@@ -111,7 +111,7 @@ export default function Editor() {
     };
     console.log(payload);
 
-    saveTemplate(selectedTemplate.id, payload)
+    saveTemplate(templateId ?? 'default', payload)
       .then(() => {
         setNotice({ status: 'success', message: 'Template saved successfully!' });
       })
