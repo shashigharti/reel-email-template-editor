@@ -212,11 +212,19 @@ export default function Editor() {
 
       <div style={{ display: "flex", gap: "20px" }}>
         <div style={{ flex: 1 }}>
-          <CheckboxControl
-            label="Use Editor"
-            checked={useEditor}
-            onChange={setEditorUsage}
-          />
+          <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+            <CheckboxControl
+              label="Enable Email Editor"
+              checked={useEditor}
+              onChange={setEditorUsage}
+            />
+            <Menu
+              onImport={onImport}
+              onAddNew={() => {
+                setSelectedTemplateId("");
+              }}
+            />
+          </div>
           <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
             <div style={{ width: "50%" }}>
               <TextControl
@@ -225,7 +233,7 @@ export default function Editor() {
                 onChange={onTitleChange}
               />
               <HelpText info="Name for the email template for internal use only." />
-              <TextControl label="Slug" value={slug || ""} disabled />
+              {/* <TextControl label="Slug" value={slug || ""} disabled /> */}
             </div>
             <div style={{ width: "50%" }}>
               <SelectControl
@@ -260,12 +268,7 @@ export default function Editor() {
             />
             <HelpText info="Add a short description for the email template. This information is for internal reference only and won't appear in the final email." />
           </div>
-          <Menu
-            onImport={onImport}
-            onAddNew={() => {
-              setSelectedTemplateId("");
-            }}
-          />
+         
           <CEditor
             ref={editorInstanceRef}
             initialContent={content}

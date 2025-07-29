@@ -103,16 +103,39 @@ class Plugin
 
         do_action('reel_email_placeholders_register');
 
-        PlaceholderRegistry::register('firstname', function ($context) {
+        PlaceholderRegistry::register('user_firstname', function ($context) {
             return $context['user']->first_name ?? '';
         });
 
-        PlaceholderRegistry::register('username', function ($context) {
+        PlaceholderRegistry::register('user_lastname', function ($context) {
+            return $context['user']->last_name ?? '';
+        });
+
+        PlaceholderRegistry::register('user_username', function ($context) {
             return $context['user']->user_login ?? '';
         });
 
-        PlaceholderRegistry::register('admin', function ($context) {
-            return 'Reel-to-reel Admin';
+        PlaceholderRegistry::register('user_fullname', function ($context) {
+            $fullname = $context['user']->first_name . " " . $context['user']->last_name;
+            return $fullname;
+        });
+
+        PlaceholderRegistry::register('logo_sm', function ($context) {
+            $relative_path = '/wp-content/themes/reel/assets/img/logo-short.svg';
+            $url = home_url($relative_path);
+            return '<img src="' . $url . '" width="200" height="100" alt="logo" loading="lazy" decoding="async">';
+        });
+
+        PlaceholderRegistry::register('logo_md', function ($context) {
+            $relative_path = '/wp-content/themes/reel/assets/img/logo-short.svg';
+            $url = home_url($relative_path);
+            return '<img src="' . $url . '" width="300" height="150" alt="logo" loading="lazy" decoding="async">';
+        });
+
+        PlaceholderRegistry::register('logo_lg', function ($context) {
+            $relative_path = '/wp-content/themes/reel/assets/img/logo-short.svg';
+            $url = home_url($relative_path);
+            return '<img src="' . $url . '" width="400" height="200" alt="logo" loading="lazy" decoding="async">';
         });
     }
 
