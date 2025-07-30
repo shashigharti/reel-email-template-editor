@@ -123,19 +123,19 @@ class Plugin
         PlaceholderRegistry::register('logo_sm', function ($context) {
             $relative_path = '/wp-content/themes/reel/assets/img/logo-sm.png';
             $url = home_url($relative_path);
-            return '<img src="' . $url . '" alt="logo" loading="lazy" decoding="async">';
+            return '<img src="' . $url . '?v=2" alt="logo" loading="lazy" decoding="async">';
         });
 
         PlaceholderRegistry::register('logo_md', function ($context) {
             $relative_path = '/wp-content/themes/reel/assets/img/logo-md.png';
             $url = home_url($relative_path);
-            return '<img src="' . $url . '" alt="logo" loading="lazy" decoding="async">';
+            return '<img src="' . $url . '?v=2" alt="logo" loading="lazy" decoding="async">';
         });
 
         PlaceholderRegistry::register('logo_lg', function ($context) {
             $relative_path = '/wp-content/themes/reel/assets/img/logo-lg.png';
             $url = home_url($relative_path);
-            return '<img src="' . $url . '" alt="logo" loading="lazy" decoding="async">';
+            return '<img src="' . $url . '?v=2" alt="logo" loading="lazy" decoding="async">';
         });
     }
 
