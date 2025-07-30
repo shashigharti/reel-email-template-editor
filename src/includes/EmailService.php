@@ -33,6 +33,7 @@ class EmailService {
 
         $headers = ['Content-Type: text/html; charset=UTF-8'];
         $headers[] = 'From: Reel-Reel <no-reply@reel-reel.com>';
+        error_log($final_body);
 
         $result = wp_mail($to, $subject, $final_body, $headers);
 
