@@ -48,7 +48,8 @@ export default function Editor() {
     console.log("Fetching templates...");
     fetchTemplates()
       .then((data) => {
-        setTemplates(data);
+        const sortedData = [...data].sort((a, b) => a.title.localeCompare(b.title));
+        setTemplates(sortedData);
         if (data.length > 0) {
           setSelectedTemplateId(data[0].id);
         }
@@ -58,8 +59,9 @@ export default function Editor() {
     console.log("Fetching hooks...");
     fetchHooks()
       .then((data) => {
+        const sortedData = [...data].sort((a, b) => a.name.localeCompare(b.name));
         if (data.length > 0) {
-          setHooks(data);
+          setHooks(sortedData);
         }
       })
       .catch((err) => console.error("Error fetching hooks:", err));

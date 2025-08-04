@@ -103,21 +103,25 @@ class Plugin
 
         do_action('reel_email_placeholders_register');
 
-        PlaceholderRegistry::register('user_firstname', function ($context) {
-            return $context['user']->first_name ?? '';
+        PlaceholderRegistry::register('admin_firstname', function () {
+            $admin = reel_get_admin_user();
+            return $admin->first_name ?? '';
         });
 
-        PlaceholderRegistry::register('user_lastname', function ($context) {
-            return $context['user']->last_name ?? '';
+        PlaceholderRegistry::register('admin_lastname', function () {
+            $admin = reel_get_admin_user();
+            return $admin->last_name ?? '';
         });
 
-        PlaceholderRegistry::register('user_username', function ($context) {
-            return $context['user']->user_login ?? '';
+        PlaceholderRegistry::register('admin_username', function () {
+            $admin = reel_get_admin_user();
+            return $admin->user_login ?? '';
         });
 
-        PlaceholderRegistry::register('user_fullname', function ($context) {
-            $fullname = $context['user']->first_name . " " . $context['user']->last_name;
-            return $fullname;
+        PlaceholderRegistry::register('admin_fullname', function () {
+            $admin = reel_get_admin_user();
+            if (!$admin) return '';
+            return trim("{$admin->first_name} {$admin->last_name}");
         });
 
         PlaceholderRegistry::register('logo_sm', function ($context) {

@@ -1,0 +1,30 @@
+<div class="email-body">
+  <p>
+    Hi {{seller_name}},<br /><br />
+
+    The buyer "{{buyer_name}}" of:<br />
+    {{product_list}}<br /><br />
+
+    would like you to invoice for the purchase.<br /><br />
+
+    This is the address to send to:
+  </p>
+
+  <address>
+    Address: {{buyer_address}}<br />
+    City: {{buyer_city}}<br />
+    Country: {{buyer_country}}<br />
+    Postal code: {{buyer_postal_code}}<br />
+  </address>
+
+  <p>
+    <strong>COMMENT:</strong> {{comment}}
+  </p>
+
+  <p>
+    Create Invoice For
+    <a href="{{create_invoice_url}}" target="_blank">
+      {{buyer_name}}
+    </a>
+  </p>
+</div>

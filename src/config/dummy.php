@@ -2,19 +2,25 @@
 
 return [
     'additional_info'      => 'Handle with care. Fragile tapes.',
-    'admin'                => 'Reel-to-Reel Admin',
-    'author_name'          => 'John Calladine',
+    'admin_firstname'      => 'John',
+    'admin_fullname'       => 'John Calladine',
+    'admin_lastname'       => 'Calladine',
+    'admin_username'       => 'john',
+    'author_firstname'     => 'John',
+    'author_fullname'      => 'John Calladine',
+    'author_lastname'      => 'Calladine',
+    'author_username'      => 'john',
+    'buyer_firstname'      => 'Emily',
+    'buyer_fullname'       => 'Emily Watson',
+    'buyer_lastname'       => 'Watson',
+    'buyer_username'       => 'emily',
     'buyer_address'        => '123 Tape Lane, Apt 4B',
     'buyer_city'           => 'New York',
     'buyer_country'        => 'USA',
-    'buyer_name'           => 'Emily Watson',
     'buyer_postal_code'    => '10001',
     'comment'              => 'Please confirm availability before purchase.',
     'create_invoice_url'   => 'https://www.reel-to-reel.com/',
     'currency'             => 'USD',
-    'making_end'           => 'Present',
-    'making_start'         => '2006',
-    'manufacturer_country' => 'Germany',
     'message'              => 'Hello, I am interested in purchasing the reel-to-reel tapes you have listed. Please provide more details about availability and shipping options. Thank you!',
     'order_details'        => '
         <table>
@@ -47,7 +53,7 @@ return [
     'payment_method'       => 'Credit Card',
     'paypal_payment_url'   => 'https://www.reel-to-reel.com/',
     'post_url'             => 'https://www.reel-to-reel.com/',
-    'product_items'        => '
+    'product_list'        => '
         <table>
             <thead>
                 <tr>
@@ -80,10 +86,13 @@ return [
     'remaining_counter'    => '5',
     'reply_url'            => 'https://www.reel-to-reel.com/',
     'request_invoice_url'  => 'https://www.reel-to-reel.com/',
+    'seller_firstname'     => 'John',
+    'seller_fullname'      => 'John Calladine',
+    'seller_lastname'      => 'Calladine',
+    'seller_username'      => 'john',
     'seller_address'       => '789 Tape Street, Berlin',
     'seller_city'          => 'Toronto',
     'seller_country'       => 'Canada',
-    'seller_name'          => 'John Calladine',
     'selling_price'        => '120',
     'shipping_address'     => '123 Tape Lane, Apt 4B, New York, NY 10001, USA',
     'shipping_details'     => '
@@ -120,4 +129,12 @@ return [
     'time_left_value'      => '2 days 4 hours',
     'total_amount'         => 200,
     'total_items'          => '3',
+    'receiver_firstname'   => 'John',
+    'receiver_fullname'    => 'John Calladine',
+    'receiver_lastname'    => 'Calladine',
+    'receiver_username'    => 'john',
+    'user_firstname'       => 'John',
+    'user_fullname'        => 'John Calladine',
+    'user_lastname'        => 'Calladine',
+    'user_username'        => 'john',
 ];
