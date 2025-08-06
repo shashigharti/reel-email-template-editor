@@ -14,6 +14,7 @@ import {
   saveTemplate,
   deleteTemplate,
   importTemplate,
+  exportTemplate,
   saveSettings,
   fetchSettings,
 } from "../utils/api";
@@ -29,7 +30,8 @@ import HelpText from "./components/HelpText.js";
 export default function Editor() {
   const [templates, setTemplates] = useState([]);
   const [hooks, setHooks] = useState([]);
-  const [selectedTemplateId, setSelectedTemplateId] = useState(null);
+  const [selectedTemplateId, setSelectedTemplateID] = useState(null);
+  const [selectedThemeId, setSelectedThemeID] = useState(null);
   const [content, setContent] = useState("");
   const [subject, setSubject] = useState("");
   const [hookID, setHookID] = useState(null);
@@ -41,6 +43,13 @@ export default function Editor() {
   const editorInstanceRef = useRef(null);
   const [selectedUserTypeID, setSelectedUserTypeID] = useState(null);
   const [useEditor, setUseEditor] = useState(false);
+  const themes = [
+    { slug: "none", title: "None" },
+    { slug: "default", title: "Default" },
+    { slug: "dark-mode-luxe", title: "Dark Mode Luxe" },
+    { slug: "vibrant-gradient", title: "Vibrant Gradient" },
+    { slug: "soft-pastel", title: "Soft Pastel" },
+  ];
 
   const selectedTemplate = templates.find((t) => t.id === selectedTemplateId);
 
@@ -48,10 +57,12 @@ export default function Editor() {
     console.log("Fetching templates...");
     fetchTemplates()
       .then((data) => {
-        const sortedData = [...data].sort((a, b) => a.title.localeCompare(b.title));
+        const sortedData = [...data].sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
         setTemplates(sortedData);
         if (data.length > 0) {
-          setSelectedTemplateId(data[0].id);
+          setSelectedTemplateID(data[0].id);
         }
       })
       .catch((err) => console.error("Error fetching templates:", err));
@@ -59,7 +70,9 @@ export default function Editor() {
     console.log("Fetching hooks...");
     fetchHooks()
       .then((data) => {
-        const sortedData = [...data].sort((a, b) => a.name.localeCompare(b.name));
+        const sortedData = [...data].sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
         if (data.length > 0) {
           setHooks(sortedData);
         }
@@ -91,6 +104,7 @@ export default function Editor() {
         let hook_id = template.hook_id;
         let description = template.description;
         let user_type = template.user_type;
+        let theme = template.theme;
 
         if (template.slug === "default") {
           title = `${title}-${templates.length + 1}`;
@@ -101,6 +115,7 @@ export default function Editor() {
         setSubject(subject);
         setDescription(description);
         setSelectedUserTypeID(user_type);
+        setSelectedThemeID(theme);
 
         setHookID(hook_id);
       })
@@ -122,6 +137,7 @@ export default function Editor() {
       description,
       hook_id: hookID,
       user_type: selectedUserTypeID,
+      theme: selectedThemeId,
     };
     console.log(payload);
 
@@ -148,7 +164,7 @@ export default function Editor() {
       deleteTemplate(selectedTemplateId)
         .then(() => {
           setTemplates(templates.filter((t) => t.id !== selectedTemplateId));
-          setSelectedTemplateId("");
+          setSelectedTemplateID("");
           setNotice({
             status: "success",
             message: "Template deleted successfully.",
@@ -189,6 +205,28 @@ export default function Editor() {
       });
   }
 
+  function onExport() {
+    const confirmed = window.confirm(
+      "Are you sure you want to export the templates?"
+    );
+
+    if (!confirmed) return;
+
+    exportTemplate()
+      .then(() => {
+        setNotice({
+          status: "success",
+          message: "Templates exported successfully!",
+        });
+      })
+      .catch(() => {
+        setNotice({ status: "error", message: "Failed to export templates." });
+      })
+      .finally(() => {
+        setTimeout(() => setNotice(null), 3000);
+      });
+  }
+
   function onTitleChange(newTitle) {
     setTitle(newTitle);
     setSlug(generateSlug(newTitle));
@@ -222,8 +260,9 @@ export default function Editor() {
             />
             <Menu
               onImport={onImport}
+              onExport={onExport}
               onAddNew={() => {
-                setSelectedTemplateId("");
+                setSelectedTemplateID("");
               }}
             />
           </div>
@@ -249,18 +288,36 @@ export default function Editor() {
                   },
                   ...templates.map((t) => ({ label: t.title, value: t.id })),
                 ]}
-                onChange={(val) => setSelectedTemplateId(val)}
+                onChange={(val) => setSelectedTemplateID(val)}
               />
               <HelpText info="Select an email template to edit." />
             </div>
           </div>
-          <div>
-            <TextControl
-              label="Subject"
-              value={subject}
-              onChange={(val) => setSubject(val)}
-            />
-            <HelpText info="Add subject for the email. You can also use the variable here {{user_name}}." />
+          <div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
+            <div style={{ width: "50%" }}>
+              <SelectControl
+                label="Select Theme"
+                value={selectedThemeId}
+                options={[
+                  {
+                    label: "-- Select a Theme --",
+                    value: "",
+                    disabled: true,
+                  },
+                  ...themes.map((t) => ({ label: t.title, value: t.id })),
+                ]}
+                onChange={(val) => setSelectedThemeID(val)}
+              />
+              <HelpText info="Select a theme to use." />
+            </div>
+            <div style={{ width: "50%" }}>
+              <TextControl
+                label="Subject"
+                value={subject}
+                onChange={(val) => setSubject(val)}
+              />
+              <HelpText info="Add subject for the email. You can also use the variable here {{user_name}}." />
+            </div>
           </div>
           <div style={{ marginTop: "10px" }}>
             <TextControl
@@ -270,7 +327,7 @@ export default function Editor() {
             />
             <HelpText info="Add a short description for the email template. This information is for internal reference only and won't appear in the final email." />
           </div>
-         
+
           <CEditor
             ref={editorInstanceRef}
             initialContent={content}

@@ -1,4 +1,5 @@
 <?php
+
 namespace ReelEmailTemplateEditor\Rest;
 
 use ReelEmailTemplateEditor\Includes\TemplateRepository;
@@ -9,10 +10,12 @@ use WP_REST_Server;
 use WP_REST_Request;
 use WP_REST_Response;
 
-class TemplateController extends WP_REST_Controller {
+class TemplateController extends WP_REST_Controller
+{
     protected $namespace = 'reel/v1';
 
-    public function register_routes() {
+    public function register_routes()
+    {
 
         register_rest_route($this->namespace, '/email/send', [
             'methods'  => 'POST',
@@ -26,13 +29,22 @@ class TemplateController extends WP_REST_Controller {
             'permission_callback' => function () {
                 return current_user_can('edit_posts');
             },
-            'args' => [], 
+            'args' => [],
+        ]);
+
+        register_rest_route($this->namespace, '/template/export', [
+            'methods' => WP_REST_Server::CREATABLE,
+            'callback' => [$this, 'export_templates'],
+            'permission_callback' => function () {
+                return current_user_can('edit_posts');
+            },
+            'args' => [],
         ]);
 
         register_rest_route($this->namespace, '/templates', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => [$this, 'get_templates'],
-            'permission_callback' => function() {
+            'permission_callback' => function () {
                 return current_user_can('edit_posts');
             }
         ]);
@@ -40,7 +52,7 @@ class TemplateController extends WP_REST_Controller {
         register_rest_route($this->namespace, '/template/(?P<id>[a-zA-Z0-9_-]+)', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => [$this, 'get_template'],
-            'permission_callback' => function() {
+            'permission_callback' => function () {
                 return current_user_can('edit_posts');
             }
         ]);
@@ -48,7 +60,7 @@ class TemplateController extends WP_REST_Controller {
         register_rest_route($this->namespace, '/template/(?P<id>[a-zA-Z0-9_-]+)', [
             'methods' => WP_REST_Server::DELETABLE,
             'callback' => [$this, 'delete_template'],
-            'permission_callback' => function() {
+            'permission_callback' => function () {
                 return current_user_can('edit_posts');
             }
         ]);
@@ -56,7 +68,7 @@ class TemplateController extends WP_REST_Controller {
         register_rest_route($this->namespace, '/template/(?P<id>[a-zA-Z0-9_-]+)', [
             'methods' => WP_REST_Server::CREATABLE,
             'callback' => [$this, 'save_template'],
-            'permission_callback' => function() {
+            'permission_callback' => function () {
                 return current_user_can('edit_posts');
             },
             'args' => [
@@ -64,20 +76,20 @@ class TemplateController extends WP_REST_Controller {
                     'required' => true,
                 ],
             ],
-        ]);  
-        
+        ]);
+
         register_rest_route($this->namespace, '/variables', [
             'methods' => WP_REST_Server::READABLE,
             'callback' => [$this, 'get_variable_list'],
-            'permission_callback' => function() {
+            'permission_callback' => function () {
                 return current_user_can('edit_posts');
             }
         ]);
-        
     }
 
-    public function get_templates() {
-        $templates = array_map(function($template) {
+    public function get_templates()
+    {
+        $templates = array_map(function ($template) {
             return [
                 'id' => $template['id'],
                 'title' => $template['title'],
@@ -92,7 +104,8 @@ class TemplateController extends WP_REST_Controller {
         return new WP_REST_Response($templates, 200);
     }
 
-    public function get_template(WP_REST_Request $request) {
+    public function get_template(WP_REST_Request $request)
+    {
         $slug = $request->get_param('id');
         $template = TemplateRepository::get_template_by_slug($slug);
 
@@ -103,7 +116,8 @@ class TemplateController extends WP_REST_Controller {
         return new WP_REST_Response($template, 200);
     }
 
-    public function save_template(WP_REST_Request $request) {
+    public function save_template(WP_REST_Request $request)
+    {
         $id = $request->get_param('id');
         $params = $request->get_params();
 
@@ -116,7 +130,8 @@ class TemplateController extends WP_REST_Controller {
         return new WP_REST_Response(['message' => 'Template saved'], 200);
     }
 
-    public function import_template(WP_REST_Request $request) {
+    public function import_template(WP_REST_Request $request)
+    {
         $templates_dir = plugin_dir_path(__FILE__) . '../templates/';
         $imported = [];
         $errors = [];
@@ -163,7 +178,44 @@ class TemplateController extends WP_REST_Controller {
         ], empty($errors) ? 200 : 207);
     }
 
-    public function delete_template(WP_REST_Request $request) {
+
+    public function export_templates(WP_REST_Request $request)
+    {
+        $templates_dir = plugin_dir_path(__FILE__) . '../templates/';
+        $exported = [];
+        $errors = [];
+
+        if (!is_dir($templates_dir) || !is_writable($templates_dir)) {
+            return new WP_REST_Response(['message' => 'Templates folder not found or not writable'], 500);
+        }
+
+        $templates = TemplateRepository::get_templates();
+
+        foreach ($templates as $template) {
+            if (empty($template['slug']) || !isset($template['content'])) {
+                $errors[] = 'Invalid template data';
+                continue;
+            }
+
+            $filename = $templates_dir . $template['slug'] . '.html';
+
+            $written = @file_put_contents($filename, $template['content']);
+
+            if ($written === false) {
+                $errors[] = "Failed to export template: {$template['slug']}";
+            } else {
+                $exported[] = $template['slug'];
+            }
+        }
+
+        return new WP_REST_Response([
+            'exported' => $exported,
+            'errors' => $errors,
+        ], empty($errors) ? 200 : 207);
+    }
+
+    public function delete_template(WP_REST_Request $request)
+    {
         $id = $request->get_param('id');
 
         $template = TemplateRepository::template_exists($id);
@@ -180,7 +232,8 @@ class TemplateController extends WP_REST_Controller {
         }
     }
 
-    public function send_test_email(WP_REST_Request $request) {
+    public function send_test_email(WP_REST_Request $request)
+    {
         $to        = $request->get_param('recipient_email');
         $slug        = $request->get_param('template_slug');
         $subject        = "Test Email from Reel-to-Reel";
@@ -197,12 +250,12 @@ class TemplateController extends WP_REST_Controller {
         $template_content = $template['content'];
 
         $context = [];
-        $user =  get_user_by( 'email', $to );        
+        $user =  get_user_by('email', $to);
 
         if (!$user) {
             return new WP_REST_Response(['message' => 'User not found'], 404);
         }
-        
+
         $context['user'] = $user;
         error_log('Array content: ' . print_r($context, true));
 
@@ -218,7 +271,8 @@ class TemplateController extends WP_REST_Controller {
         return new WP_REST_Response(['message' => 'Email sent successfully'], 200);
     }
 
-    public function get_variable_list() {
+    public function get_variable_list()
+    {
         $variables_file = plugin_dir_path(__FILE__) . '../config/variables.php';
 
         if (!file_exists($variables_file)) {
@@ -229,5 +283,4 @@ class TemplateController extends WP_REST_Controller {
 
         return new WP_REST_Response($variables, 200);
     }
-
 }

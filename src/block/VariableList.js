@@ -17,10 +17,11 @@ export default function VariableList({ onInsert }) {
 
   const handleCopy = async (text) => {
     try {
-      await navigator.clipboard.writeText(text);
+      const variable = `{{${text}}}`;
+      await navigator.clipboard.writeText(variable);
       setCopied(true);
 
-      console.log("text", text);
+      console.log("variable", variable);
 
       setTimeout(() => {
         setCopied(false);

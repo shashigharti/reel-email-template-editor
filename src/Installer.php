@@ -15,6 +15,7 @@ class Installer {
         $hooks_sql = "CREATE TABLE $hooks_table (
             id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
             hook_name varchar(191) NOT NULL UNIQUE,
+            theme varchar(191) NULL,
             name varchar(191) NOT NULL,
             description text NULL,            
             created_at datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,

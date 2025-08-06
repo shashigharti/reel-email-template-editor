@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0;" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Your Invoice & Offers Inside</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100% !important;
+      height: 100% !important;
+      background-color: #F0F0F0;
+      font-family: Roboto, Arial, Helvetica, sans-serif;
+      color: #4B2E2E;
+      -webkit-font-smoothing: antialiased;
+      text-size-adjust: 100%;
+      line-height: normal;
+    }
+
+    table,
+    td {
+      border-collapse: collapse !important;
+    }
+
+    img {
+      border: 0;
+      outline: none;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: #7B1F1F;
+      text-decoration: none;
+    }
+
+    .btn-table td {
+      background-color: #7B1F1F;
+      padding: 12px 24px;
+      border-radius: 4px;
+    }
+
+    .btn-table a {
+      color: #FFFFFF;
+      font-size: 17px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #7B1F1F;
+      margin: 0;
+    }
+
+    .invoice-box {
+      background-color: #ffffff;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px 6.25%;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      color: #4B2E2E;
+    }
+
+    .invoice-box h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #333333;
+    }
+
+    .invoice-box h3 {
+      font-size: 18px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #7B1F1F;
+    }
+
+    .invoice-box p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555555;
+    }
+
+    .invoice-details td {
+      padding: 5px 0;
+      font-size: 14px;
+      color: #444444;
+    }
+
+    .invoice-table {
+      width: 100%;
+      margin-top: 20px;
+      border: 1px solid #CCC;
+      border-collapse: collapse;
+    }
+
+    .invoice-table th {
+      background-color: #EEE;
+      color: #4B2E2E;
+      padding: 10px;
+      text-align: left;
+      font-size: 14px;
+      border: 1px solid #CCC;
+    }
+
+    .invoice-table td {
+      padding: 10px;
+      border: 1px solid #CCC;
+      font-size: 14px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .container,
+      .wrapper {
+        width: 100% !important;
+      }
+
+      .btn-table {
+        max-width: 100% !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <table width="100%" bgcolor="#F0F0F0" role="presentation">
+    <tr>
+      <td align="center">
+        <!-- Header -->
+        <table class="wrapper" width="560" align="center">
+          <tr>
+            <td align="center" style="padding: 20px 0;">
+              <a href="https://reel-reel.com/">
+                <img src="https://reel-reel.com/wp-content/uploads/2021/01/Logo-R-R-on-Bottom-Small.png" width="100" alt="Reel to Reel Logo" />
+              </a>
+            </td>
+          </tr>
+        </table>
+
+        <table class="container" bgcolor="#FFFFFF" width="560" style="border-radius: 8px; overflow: hidden;" align="center">
+          <tr>
+            <td>
+              <a href="https://reel-reel.com/" style="display: block; position: relative; height: 200px; background: url('https://reel-reel.com/wp-content/uploads/2016/09/1-1200x480.jpg') no-repeat center center / cover;">
+                <div style="background-color: rgba(0,0,0,0.45); width: 100%; height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                  <span class="motto" style="color: #FFFFFF; font-style: italic; font-size: 17px; font-family: 'Georgia', serif;">"THE DIRECTORY OF EVERYTHING - REEL TO REEL"</span>
+                </div>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="invoice-box">
+                <h2 style="text-align: center">Your Invoice is Ready !</h2>
+                <p>Dear member,</p>
+                <p>Thank you for your order. Below is a summary of your purchase.</p>
+
+                <h3>Order Summary</h3>
+                <table width="100%" class="invoice-details">
+                  <tr>
+                    <td><strong>Order #:</strong></td>
+                    <td>#RR348294</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Date:</strong></td>
+                    <td>August 6, 2025</td>
+                  </tr>
+                </table>
+
+                <table class="invoice-table">
+                  <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </tr>
+                  <tr>
+                    <td>Telefunken Magnetophon T9</td>
+                    <td>1</td>
+                    <td>$499.00</td>
+                  </tr>
+                  <tr>
+                    <td>Sony APR-5000</td>
+                    <td>1</td>
+                    <td>$520.00</td>
+                  </tr>
+                  <tr>
+                    <th colspan="2" style="text-align: right;">Total:</th>
+                    <th>$1,019.00</th>
+                  </tr>
+                </table>
+
+                <h3>Shipping Details</h3>
+                <table width="100%" class="invoice-details">
+                  <tr>
+                    <td><strong>Name:</strong></td>
+                    <td>John Doe</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Address:</strong></td>
+                    <td>1234 Vintage Lane, Suite 8<br />Los Angeles, CA 90001<br />USA</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Shipping Method:</strong></td>
+                    <td>Standard Shipping (5–7 Business Days)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tracking Number:</strong></td>
+                    <td><a href="https://trackingcompany.com/track/RR123456789" style="color: #7B1F1F;">RR123456789</a></td>
+                  </tr>
+                </table>
+
+                <h3>Payment Summary</h3>
+                <table width="100%" class="invoice-details">
+                  <tr>
+                    <td><strong>Amount Due:</strong></td>
+                    <td>$1,019.00</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Due Date:</strong></td>
+                    <td>August 13, 2025</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding-top: 15px;">
+                      <table align="center" class="btn-table" style="max-width: 240px; width: 100%;">
+                        <tr>
+                          <td align="center">
+                            <a href="https://reel-reel.com/">Pay Now</a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding: 20px 6.25% 30px;">
+              <p style="font-size: 16px;">Want to explore more classic treasures?</p>
+              <table align="center" class="btn-table" style="max-width: 240px; width: 100%;">
+                <tr>
+                  <td align="center">
+                    <a href="https://reel-reel.com/">Browse More Deals</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding: 0 6.25%;">
+              <hr />
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding: 25px 6.25% 20px; font-size: 16px;">
+              Have questions? <a href="mailto:openreel@reel-reel.com">Email us</a>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Footer -->
+        <table class="wrapper" width="560" align="center">
+          <tr>
+            <td align="center" style="padding: 25px 6.25%; color: #7B1F1F; font-size: 13px;">
+              <table width="256" align="center" style="margin-bottom: 10px;">
+                <tr>
+                  <td style="padding: 0 10px;">
+                    <a href="https://facebook.com/reel2reel"><img src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/facebook.png" width="44" alt="Facebook" /></a>
+                  </td>
+                  <td style="padding: 0 10px;">
+                    <a href="https://twitter.com/reel2reel"><img src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/twitter.png" width="44" alt="Twitter" /></a>
+                  </td>
+                  <td style="padding: 0 10px;">
+                    <a href="https://instagram.com/reel2reel"><img src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/instagram.png" width="44" alt="Instagram" /></a>
+                  </td>
+                  <td style="padding: 0 10px;">
+                    <a href="https://youtube.com/reel2reel"><img src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/youtube.png" width="44" alt="YouTube" /></a>
+                  </td>
+                </tr>
+              </table>
+              You received this email because you registered at <a href="https://reel-reel.com/">reel-reel.com</a>.<br />
+              © 2025 Reel to Reel. All rights reserved.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

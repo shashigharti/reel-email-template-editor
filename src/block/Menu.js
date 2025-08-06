@@ -1,6 +1,11 @@
 import TemplateSelector from "./components/TemplateSelector";
 
-export default function Menu({ onImport, onAddNew, onTemplateSelect }) {
+export default function Menu({
+  onImport,
+  onExport,
+  onAddNew,
+  onTemplateSelect,
+}) {
   return (
     <div
       style={{
@@ -31,6 +36,27 @@ export default function Menu({ onImport, onAddNew, onTemplateSelect }) {
           📥
         </span>
         Import
+      </button>
+      <button
+        type="button"
+        onClick={onExport}
+        style={{
+          padding: "6px 12px",
+          background: "#0073aa",
+          color: "#fff",
+          border: "none",
+          borderRadius: "3px",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+        }}
+        title="Export Template"
+      >
+        <span role="img" aria-label="Export">
+          📤 
+        </span>
+        Export
       </button>
       <button
         type="button"

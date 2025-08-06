@@ -127,6 +127,7 @@ class TemplateRepository {
             'description' => $params['description'] ?? '',
             'hook_id' => $params['hook_id'] ?? null,
             'user_type' => $params['user_type'] ?? null,
+            'theme' => $params['theme'] ?? 'none',
             'updated_at' => current_time('mysql'),
         ];
         

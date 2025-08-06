@@ -30,6 +30,13 @@ export function importTemplate() {
   });
 }
 
+export function exportTemplate() {
+  return apiFetch({
+    path: `${API_BASE}/template/export`,
+    method: "POST",
+  });
+}
+
 export function deleteTemplate(id) {
   return apiFetch({
     path: `${API_BASE}/template/${encodeURIComponent(id)}`,
