@@ -17,7 +17,7 @@ return [
     ],
     [
         'hook_name'   => 'reel_message_received',
-        'name'        => 'Message Received',
+        'name'        => 'New Message Received',
         'description' => 'When message is received.',
     ],
     [
@@ -42,7 +42,7 @@ return [
     ],
     [
         'hook_name'   => 'reel_bsa_accept_offer_by_seller',
-        'name'        => 'Seller accepts the offer',
+        'name'        => 'Seller Accepts the offer',
         'description' => 'When offer is accepted by seller.',
     ],
     [
@@ -52,12 +52,62 @@ return [
     ],
     [
         'hook_name'   => 'reel_bsa_make_counter_offer_by_seller',
-        'name'        => 'Seller makes a Counter Offer',
+        'name'        => 'Seller Makes a Counter Offer',
         'description' => 'When a counter offer is made by seller.',
     ],
     [
         'hook_name'   => 'reel_bsa_accept_offer_by_buyer',
-        'name'        => 'Buyer accepts the offer',
+        'name'        => 'Buyer Accepts the offer',
         'description' => 'When offer is accepted by buyer.',
+    ],
+    [
+        'hook_name'   => 'reel_newgeneration_on_submit',
+        'name'        => 'New Generation On Submit',
+        'description' => 'Hook triggered on new generation submission.',
+    ],
+    [
+        'hook_name'   => 'reel_label_on_submit',
+        'name'        => 'Label On Submit',
+        'description' => 'Hook triggered when label is submitted.',
+    ],
+    [
+        'hook_name'   => 'reel_brand_on_submit',
+        'name'        => 'Brand On Submit',
+        'description' => 'Hook triggered when brand is submitted.',
+    ],
+    [
+        'hook_name'   => 'reel_technician_on_submit',
+        'name'        => 'Technician On Submit',
+        'description' => 'Hook triggered when technician is submitted.',
+    ],
+    [
+        'hook_name'   => 'reel_diy_on_submit',
+        'name'        => 'DIY On Submit',
+        'description' => 'Hook triggered when DIY is submitted.',
+    ],
+    [
+        'hook_name'   => 'reel_taperecorder_on_submit',
+        'name'        => 'Tape Recorder On Submit',
+        'description' => 'Hook triggered when tape recorder is submitted.',
+    ],
+    [
+        'hook_name'   => 'reel_technician_when_contacted',
+        'name'        => 'Technician When Contacted',
+        'description' => 'Hook triggered when technician is contacted.',
+    ],
+    [
+        'hook_name'   => 'reel_sale_notification',
+        'name'        => 'Sale Notification',
+        'description' => 'Hook triggered for sale notifications.',
+    ],
+    [
+        'hook_name'   => 'reel_pending_posts_notification',
+        'name'        => 'New Pending Posts Notification',
+        'description' => 'Hook triggered for new pending posts notifications.',
+    ],
+    [
+        'hook_name'   => 'reel_newview_on_submit',
+        'name'        => 'New View On Submit',
+        'description' => 'Hook triggered when a new view is submitted.',
     ],
 ];

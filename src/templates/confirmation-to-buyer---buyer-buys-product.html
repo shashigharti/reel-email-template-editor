@@ -1,1 +1,31 @@
-<p>Failed to load template.</p>
+<p>Congratulations!</p>
+<p>
+  <br />You should be receiving communication from the seller
+  <strong>{{seller_firstname}}</strong> who is located in
+  <strong>{{seller_city}}, {{seller_country}}</strong> shortly. Alternately you
+  can request an invoice.&nbsp;<br />The
+  <strong>{{product_title}} {{product_type}}</strong> is now listed as
+  <i>Pending</i> on the website, so nobody else can buy it. You have 72 hours to
+  complete the transaction or it will be posted back for sale.
+</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Summary</th>
+        <th>Price</th>
+        <th>Request An Invoice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{product_title}}</td>
+        <td>{{currency}} {{selling_price}}</td>
+        <td>
+          <a href="{{request_invoice_url}}">Request Invoice</a> &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>

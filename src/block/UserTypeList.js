@@ -2,9 +2,11 @@ import { useState } from "@wordpress/element";
 import HelpText from "./components/HelpText.js";
 
 const DEFAULT_USER_TYPES = [
-  { id: "buyer", name: "Buyer" },
-  { id: "seller", name: "Seller" },
-  { id: "member", name: "Member" }
+  { id: "buyer", name: "Buyer", description: "BSA - Buyer" },
+  { id: "seller", name: "Seller", description: "BSA - Seller"  },
+  { id: "member", name: "Member", description: "Reel-to-Reel Member"  },
+  { id: "admin", name: "Admin", description: "Reel-to-Reel Admin" },
+  { id: "technician", name: "Technician", description: "Reel-to-Reel Technician" }
 ];
 
 export default function UserTypeList({ onSelect, selectedUserTypeID }) {
@@ -51,7 +53,7 @@ export default function UserTypeList({ onSelect, selectedUserTypeID }) {
               onChange={(e) => handleChange(e.target.value)}
               style={{ marginRight: "8px" }}
             />
-            <strong>{userType.name}</strong>
+            <strong>{userType.name} : {userType.description}</strong>
           </label>
         ))}
       </div>

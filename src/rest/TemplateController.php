@@ -154,9 +154,15 @@ class TemplateController extends WP_REST_Controller
                 $errors[] = "Failed to read file: " . basename($file);
                 continue;
             }
+            
+            $slug = $filename;
 
-            $slug = sanitize_title($filename);
-            $title = ucwords(str_replace(['-', '_'], ' ', $slug));
+            // replace _, - to space but keep --- as it is
+            $placeholder = '@';
+            $title = str_replace('---', $placeholder, $slug);
+            $title = str_replace(['-'], ' ', $title);
+            $title = str_replace($placeholder, ' - ', $title);
+            $title = ucwords($title);
 
             $existing = TemplateRepository::template_exists($slug);
             if ($existing) {

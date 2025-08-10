@@ -29,7 +29,8 @@ export default function HookList({ onAttach, selectedHookID, hooks = [] }) {
       >
         {hooks.map((hook) => (
           <label
-            key={hooks.id}
+            key={hook.id}
+            title={hook.description} 
             style={{
               display: "block",
               padding: "8px",

@@ -45,10 +45,10 @@ export default function Editor() {
   const [useEditor, setUseEditor] = useState(false);
   const themes = [
     { slug: "none", title: "None" },
-    { slug: "default", title: "Default" },
-    { slug: "dark-mode-luxe", title: "Dark Mode Luxe" },
-    { slug: "vibrant-gradient", title: "Vibrant Gradient" },
-    { slug: "soft-pastel", title: "Soft Pastel" },
+    { slug: "detailed", title: "Detailed" },
+    { slug: "basic", title: "Basic" },
+    { slug: "invoice", title: "Invoice" },
+    { slug: "sale", title: "Sale" },
   ];
 
   const selectedTemplate = templates.find((t) => t.id === selectedTemplateId);
