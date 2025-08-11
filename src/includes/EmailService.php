@@ -12,7 +12,7 @@ class EmailService {
 
     public function send_email(string $to, string $subject, string $body)
     {
-        $template_path = plugin_dir_path(__FILE__) . 'templates/default-email.php';
+        $template_path = plugin_dir_path(__FILE__) . 'templates/default.php';
 
         if (!file_exists($template_path)) {
             return new \WP_Error(

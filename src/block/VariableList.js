@@ -9,7 +9,14 @@ export default function VariableList({ onInsert }) {
 
   useEffect(() => {
     fetchVariables()
-      .then(setVariables)
+      .then((data) => {
+        const sortedData = [...data].sort((a, b) =>
+          a.key.localeCompare(b.key)
+        );
+        if (data.length > 0) {
+          setVariables(sortedData);
+        }
+      })
       .catch((error) => {
         console.error("Failed to fetch variables:", error);
       });

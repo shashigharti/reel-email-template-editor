@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0;" />
   <meta name="format-detection" content="telephone=no" />
-  <title>Welcome to Reel to Reel</title>
+  <title>{{email_subject}}</title>
   <style>
     body {
       margin: 0; padding: 0; width: 100% !important; height: 100% !important;
@@ -31,16 +31,6 @@
       border-top: 1px solid #7B1F1F;
       margin: 0;
     }
-    .banner-overlay span {
-      font-weight: 700;
-      font-size: 18px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-      margin-bottom: 8px;
-      color: #7B1F1F;
-      display: block;
-    }
     h2 {
       color: #4B2E2E;
       margin-top: 0;
@@ -49,19 +39,8 @@
       color: #4B2E2E;
       font-size: 17px;
     }
-    .motto {
-      color: #FFFFFF;
-      font-style: italic;
-      font-size: 17px;
-      margin-top: 8px;
-      display: inline-block;
-      font-family: 'Georgia', serif;
-    }
     @media only screen and (max-width: 600px) {
       .container, .wrapper { width: 100% !important; }
-      .banner-overlay span {
-        font-size: 16px !important;
-      }
       .btn-table {
         max-width: 100% !important;
       }
@@ -88,28 +67,38 @@
           </td>
         </tr>
       </table>
+
+      <!-- BANNER WITH CENTERED MOTTO -->
       <table class="container" bgcolor="#FFFFFF" width="560" style="max-width: 560px; border-radius: 8px; overflow: hidden;" align="center">
         <tr>
-            <td>
-              <a href="https://reel-reel.com/" style="display: block; position: relative; height: 200px; background: url('https://reel-reel.com/wp-content/uploads/2016/09/1-1200x480.jpg') no-repeat center center / cover; color: #ffffff;">
-                <div style="background-color: rgba(0,0,0,0.45); width: 100%; height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; line-height: 1.4;">
-                  <span class="banner-overlay motto">
-                    "THE DIRECTORY OF EVERYTHING - REEL TO REEL"
-                  </span>
-                </div>
-              </a>
-            </td>
+          <td>
+            <table width="100%" height="200" cellpadding="0" cellspacing="0" border="0" background="https://reel-reel.com/wp-content/uploads/2016/09/1-1200x480.jpg" style="background-image: url('https://reel-reel.com/wp-content/uploads/2016/09/1-1200x480.jpg'); background-size: cover; background-position: center;">
+              <tr>
+                <td align="center" valign="middle" height="200" style="background-color: rgba(0,0,0,0.45);">
+                  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                      <td align="center" style="padding: 0 15px;">
+                        <span style="display: block; font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); color: #FFFFFF; font-style: italic; font-family: Georgia, serif;">
+                          "THE DIRECTORY OF EVERYTHING - REEL TO REEL"
+                        </span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
+
+        <!-- MAIN CONTENT -->
         <tr>
           <td style="padding: 25px 6.25%;">
             <h2 style="margin-top: 20px; text-align: center">Welcome to Reel to Reel!</h2>
-            <p>Dear member,</p>
-            <p>
-              Thank you for registering with <strong><a href="https://reel-reel.com/">Reel to Reel</a></strong>. You're now part of a passionate community of tape collectors and analog audio lovers.
-              Discover rare tapes, authentic gear, and timeless sound from decades past.
-            </p>
+            {{email_body}}
           </td>
         </tr>
+
+        <!-- CTA BUTTON -->
         <tr>
           <td align="center" style="padding: 10px 6.25% 30px;">
             <table align="center" class="btn-table" style="max-width: 240px; width: 100%;">
@@ -121,17 +110,23 @@
             </table>
           </td>
         </tr>
+
+        <!-- SEPARATOR -->
         <tr>
           <td style="padding: 0 6.25%;">
             <hr />
           </td>
         </tr>
+
+        <!-- SUPPORT INFO -->
         <tr>
           <td align="center" style="padding: 25px 6.25% 20px; font-size: 16px;">
             Have questions? <a href="mailto:openreel@reel-reel.com" style="color: #7B1F1F;">Email us</a>
           </td>
         </tr>
       </table>
+
+      <!-- FOOTER -->
       <table class="wrapper" width="560" style="max-width: 560px;" align="center">
         <tr>
           <td align="center" style="padding: 25px 6.25%; color: #7B1F1F; font-size: 13px;">

@@ -61,9 +61,9 @@ return [
         'description' => 'When offer is accepted by buyer.',
     ],
     [
-        'hook_name'   => 'reel_newgeneration_on_submit',
-        'name'        => 'New Generation On Submit',
-        'description' => 'Hook triggered on new generation submission.',
+        'hook_name'   => 'reel_tape_on_submit',
+        'name'        => 'New Tape On Submit',
+        'description' => 'Hook triggered on new tape submission.',
     ],
     [
         'hook_name'   => 'reel_label_on_submit',
@@ -110,4 +110,11 @@ return [
         'name'        => 'New View On Submit',
         'description' => 'Hook triggered when a new view is submitted.',
     ],
+    [
+        'hook_name'   => 'reel_technician_on_recommend',
+        'name'        => 'New Technician on Recommend',
+        'description' => 'Hook triggered when technician is recommended(Not in system).',
+    ],
 ];
+
+
